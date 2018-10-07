@@ -1,4 +1,4 @@
-﻿using Hirportal.ServiceInterfaces;
+﻿using Hirportal.Bll.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

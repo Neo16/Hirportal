@@ -11,7 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Hirportal.Data;
 using Hirportal.Models;
 using Hirportal.Services;
-using Hirportal.ServiceInterfaces;
+using Hirportal.Bll.ServiceInterfaces;
+using Hirportal.Bll.Services;
 
 namespace Hirportal
 {
@@ -36,6 +37,7 @@ namespace Hirportal
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IFormService, FormService>();
 
             services.AddMvc();
         }

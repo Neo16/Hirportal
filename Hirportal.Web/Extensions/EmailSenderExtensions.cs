@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Hirportal.Services;
-using Hirportal.ServiceInterfaces;
+using Hirportal.Bll.ServiceInterfaces;
 
 namespace Hirportal.Services
 {

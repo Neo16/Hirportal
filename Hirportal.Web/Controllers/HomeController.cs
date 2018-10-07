@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Hirportal.Models;
 using Hirportal.Web.Models;
+using Hirportal.Bll.ServiceInterfaces;
 
 namespace Hirportal.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IFormService formService;
+
+        public HomeController(IFormService formService)
+        {
+            this.formService = formService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,9 +31,15 @@ namespace Hirportal.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitedForm([FromBody] ExampleFormViewmodel model)
+        public async Task<IActionResult> SubmitedForm([FromBody] ExampleFormViewmodel model)
         {
             string message = "Works!";
+            await formService.addForm(new Model.Form()
+            {
+                Comments = model.Comments,
+                Email = model.Email,
+                FullName = model.FullName
+            });
             return Json(new {  message });
         }
     }
