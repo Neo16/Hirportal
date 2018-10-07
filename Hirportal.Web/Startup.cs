@@ -36,8 +36,16 @@ namespace Hirportal
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IFormService, FormService>();
+            var assembly = typeof(IEmailSender).Assembly;
+            var serviceTypes = assembly.ExportedTypes
+               .Where(e => e.IsClass && e.IsPublic)
+               .Where(e => e.Namespace == "Hirportal.Bll.Services")
+               .ToList();
+
+            foreach (var serviceType in serviceTypes)
+            {
+                services.AddTransient(serviceType.GetInterface($"I{serviceType.Name}"), serviceType);
+            }
 
             services.AddMvc();
         }
