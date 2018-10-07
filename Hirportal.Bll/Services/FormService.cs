@@ -8,13 +8,10 @@ using Hirportal.Data;
 
 namespace Hirportal.Bll.Services
 {
-    public class FormService : IFormService
+    public class FormService : ServiceBase, IFormService
     {
-        private readonly ApplicationDbContext context;
-
-        public FormService(ApplicationDbContext context)
+        public FormService(ApplicationDbContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task addForm(Form form)

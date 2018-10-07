@@ -38,7 +38,7 @@ namespace Hirportal
             // Add application services.
             var assembly = typeof(IEmailSender).Assembly;
             var serviceTypes = assembly.ExportedTypes
-               .Where(e => e.IsClass && e.IsPublic)
+               .Where(e => e.IsClass && e.IsPublic && !e.IsAbstract)
                .Where(e => e.Namespace == "Hirportal.Bll.Services")
                .ToList();
 
