@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hirportal.Web", "Hirportal\Hirportal.Web.csproj", "{D38CBE81-125A-4F5B-88A9-10119D505221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hirportal.Web", "Hirportal.Web\Hirportal.Web.csproj", "{D38CBE81-125A-4F5B-88A9-10119D505221}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hirportal.Dal", "Hirportal.Dal\Hirportal.Dal.csproj", "{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}"
 EndProject
