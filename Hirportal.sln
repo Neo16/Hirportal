@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirportal", "Hirportal\Hirportal.csproj", "{D38CBE81-125A-4F5B-88A9-10119D505221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hirportal.Web", "Hirportal\Hirportal.Web.csproj", "{D38CBE81-125A-4F5B-88A9-10119D505221}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hirportal.Dal", "Hirportal.Dal\Hirportal.Dal.csproj", "{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirportal.Model", "Hirportal.Model\Hirportal.Model.csproj", "{EA139BD1-DB30-4B43-B7FA-55220383E827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirportal.Bll", "Hirportal.Bll\Hirportal.Bll.csproj", "{B51F1539-69F5-4EEA-83AD-247A1B066B73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{D38CBE81-125A-4F5B-88A9-10119D505221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D38CBE81-125A-4F5B-88A9-10119D505221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D38CBE81-125A-4F5B-88A9-10119D505221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924DFEAB-0F65-40D8-B76E-550C22D7CC5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA139BD1-DB30-4B43-B7FA-55220383E827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA139BD1-DB30-4B43-B7FA-55220383E827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA139BD1-DB30-4B43-B7FA-55220383E827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA139BD1-DB30-4B43-B7FA-55220383E827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51F1539-69F5-4EEA-83AD-247A1B066B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51F1539-69F5-4EEA-83AD-247A1B066B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51F1539-69F5-4EEA-83AD-247A1B066B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51F1539-69F5-4EEA-83AD-247A1B066B73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

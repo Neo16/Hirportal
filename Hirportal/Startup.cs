@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Hirportal.Data;
 using Hirportal.Models;
 using Hirportal.Services;
+using Hirportal.ServiceInterfaces;
 
 namespace Hirportal
 {

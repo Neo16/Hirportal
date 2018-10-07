@@ -18,4 +18,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hirportal.Bll\Hirportal.Bll.csproj" />
+    <ProjectReference Include="..\Hirportal.Dal\Hirportal.Dal.csproj" />
+    <ProjectReference Include="..\Hirportal.Model\Hirportal.Model.csproj" />
+  </ItemGroup>
+
 </Project>

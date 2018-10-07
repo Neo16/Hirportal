@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hirportal.Services
+namespace Hirportal.ServiceInterfaces
 {
     public interface IEmailSender
     {

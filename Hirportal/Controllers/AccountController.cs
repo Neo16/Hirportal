@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Hirportal.Models;
 using Hirportal.Models.AccountViewModels;
 using Hirportal.Services;
+using Hirportal.ServiceInterfaces;
 
 namespace Hirportal.Controllers
 {
