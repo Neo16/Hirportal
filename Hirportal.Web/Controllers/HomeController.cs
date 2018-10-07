@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Hirportal.Models;
-using Hirportal.Web.Models;
 using Hirportal.Bll.ServiceInterfaces;
+using Hirportal.Web.Controllers;
+using AutoMapper;
+using Hirportal.Bll.Models;
+using Hirportal.Model;
 
 namespace Hirportal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-
         private readonly IFormService formService;
 
-        public HomeController(IFormService formService)
+        public HomeController(IMapper mapper, IFormService formService): base(mapper)
         {
             this.formService = formService;
         }
@@ -31,15 +31,12 @@ namespace Hirportal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitedForm([FromBody] ExampleFormViewmodel model)
+        public async Task<IActionResult> SubmitedForm([FromBody] ExampleFormData model)
         {
+            var form = mapper.Map<Form>(model);
+            await formService.addForm(form);
+
             string message = "Works!";
-            await formService.addForm(new Model.Form()
-            {
-                Comments = model.Comments,
-                Email = model.Email,
-                FullName = model.FullName
-            });
             return Json(new {  message });
         }
     }

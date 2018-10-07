@@ -13,6 +13,8 @@ using Hirportal.Models;
 using Hirportal.Services;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Bll.Services;
+using AutoMapper;
+using Hirportal.Bll;
 
 namespace Hirportal
 {
@@ -47,6 +49,7 @@ namespace Hirportal
                 services.AddTransient(serviceType.GetInterface($"I{serviceType.Name}"), serviceType);
             }
 
+            services.AddAutoMapper();
             services.AddMvc();
         }
 
@@ -67,6 +70,8 @@ namespace Hirportal
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            AutoMapperConfiguration.Configure();
 
             app.UseMvc(routes =>
             {

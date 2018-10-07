@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hirportal.Web.Models
+namespace Hirportal.Bll.Models
 {
-    public class ExampleFormViewmodel
+    public class ExampleFormData
     {
         public string FullName { get; set; }
         public string Email { get; set; }
