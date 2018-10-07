@@ -43,7 +43,7 @@ new Vue({
                 axios({
                     method: 'post',
                     url: '/Home/SubmitedForm',
-                    data: { "Fields": this.$data }
+                    data: this.$data
                 }).then(res => {
                     alert('Successfully submitted feedback form ');
                     this.$refs.SubmitButton.setAttribute("disabled", "disabled");

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Hirportal.Models;
+using Hirportal.Web.Models;
 
 namespace Hirportal.Controllers
 {
@@ -18,6 +19,13 @@ namespace Hirportal.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult SubmitedForm([FromBody] ExampleFormViewmodel model)
+        {
+            string message = "Works!";
+            return Json(new {  message });
         }
     }
 }
