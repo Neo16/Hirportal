@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-Hirportal-6246B3DD-8712-4674-A484-E7F0E1C5CD11</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Scripts\utills.js" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
@@ -16,6 +20,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Scripts\utils.js" />
   </ItemGroup>
 
   <ItemGroup>

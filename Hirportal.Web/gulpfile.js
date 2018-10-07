@@ -11,7 +11,7 @@ const uglify = require('gulp-uglify');
 const webpack = require('webpack-stream');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
-const scriptsPath = 'Scripts/**/*.js';
+const scriptsPath = 'Scripts/*.js';
 const stylesPath = 'Styles/**/*.scss';
 /**
  * CSS Processing

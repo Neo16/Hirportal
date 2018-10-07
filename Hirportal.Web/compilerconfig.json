@@ -2,5 +2,9 @@
   {
     "outputFile": "gulpfile.es5.js",
     "inputFile": "gulpfile.js"
+  },
+  {
+    "outputFile": "Scripts/utills.es5.js",
+    "inputFile": "Scripts/utills.js"
   }
 ]

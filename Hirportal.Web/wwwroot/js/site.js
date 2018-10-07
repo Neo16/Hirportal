@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./Scripts/site.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -90,10 +90,34 @@
 /*!*************************!*\
   !*** ./Scripts/site.js ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("﻿new Vue({\r\n    el: '#form',\r\n    data: {\r\n        FullName: '',\r\n        Email: '',\r\n        Comments: ''\r\n    }\r\n});\n\n//# sourceURL=webpack:///./Scripts/site.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ \"./Scripts/utils.js\");\n﻿\r\n\r\nnew Vue({\r\n    el: '#form',\r\n    data: {\r\n        FullName: '',\r\n        Email: '',\r\n        Comments: '',\r\n        InvalidEmail: false\r\n    },\r\n    computed: {\r\n        isSubmitDisabled() {\r\n            let isDisabled = true;\r\n\r\n            if (\r\n                this.FullName !== '' &&\r\n                this.Email !== '' &&\r\n                this.Comments !== ''\r\n            ) {\r\n                isDisabled = false;\r\n            }\r\n\r\n            return isDisabled;\r\n        }\r\n    },\r\n    methods: {\r\n        ResetForm() {\r\n            this.FullName = '';\r\n            this.Email = '';\r\n            this.Comments = '';\r\n        },\r\n        SubmitForm() {\r\n            let submit = true;\r\n\r\n            if (!Object(_utils__WEBPACK_IMPORTED_MODULE_0__[\"validateEmail\"])(this.Email)) {\r\n                this.InvalidEmail = true;\r\n                submit = false;\r\n            } else {\r\n                this.InvalidEmail = false;\r\n            }\r\n\r\n            if (submit) {\r\n                axios({\r\n                    method: 'post',\r\n                    url: '/Home/SubmitedForm',\r\n                    data: { \"Fields\": this.$data }\r\n                }).then(res => {\r\n                    alert('Successfully submitted feedback form ');\r\n                    this.$refs.SubmitButton.setAttribute(\"disabled\", \"disabled\");\r\n                }).catch(err => {\r\n                    alert(`There was an error submitting your form. See details: ${err}`);\r\n                });\r\n            }\r\n        }\r\n    }\r\n});\n\n//# sourceURL=webpack:///./Scripts/site.js?");
+
+/***/ }),
+
+/***/ "./Scripts/utils.js":
+/*!**************************!*\
+  !*** ./Scripts/utils.js ***!
+  \**************************/
+/*! exports provided: validateEmail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validateEmail\", function() { return validateEmail; });\n﻿const validateEmail = email => {\r\n    const re = /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;\r\n    return re.test(String(email).toLowerCase());\r\n}\n\n//# sourceURL=webpack:///./Scripts/utils.js?");
+
+/***/ }),
+
+/***/ 0:
+/*!**************************************************!*\
+  !*** multi ./Scripts/site.js ./Scripts/utils.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\site.js */\"./Scripts/site.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\utils.js */\"./Scripts/utils.js\");\n\n\n//# sourceURL=webpack:///multi_./Scripts/site.js_./Scripts/utils.js?");
 
 /***/ })
 
