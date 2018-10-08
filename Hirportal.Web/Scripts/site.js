@@ -1,12 +1,17 @@
 ﻿import { validateEmail } from './utils';
+import { VueEditor } from 'vue2-editor';
 
 new Vue({
     el: '#form',
+    components: {
+        VueEditor
+    },
     data: {
         FullName: '',
         Email: '',
         Comments: '',
-        InvalidEmail: false
+        InvalidEmail: false,
+        content: ''
     },
     computed: {
         isSubmitDisabled() {

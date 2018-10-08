@@ -13,14 +13,14 @@
     </p>
 
     <p>
-        <label>Comments</label>
-        <textarea rows="10" placeholder="Enter some positive comments" v-model="Comments"></textarea>
+        <label>Comments</label>     
+        <vue-editor v-model="Comments"></vue-editor>
     </p>
 
     <div id="form-buttons">
         <button type="button" class="danger" v-on:click="ResetForm">Reset Form</button>
         <button type="button" class="success" ref="SubmitButton" v-bind:disabled="isSubmitDisabled" v-on:click="SubmitForm">
-             Submit Form
+            Submit Form
         </button>
-    </div>
+    </div>  
 </div>
