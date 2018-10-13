@@ -9,11 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Hirportal.Models;
-using Hirportal.Models.ManageViewModels;
+using Hirportal.Web.ViewModels.ManageViewModels;
 using Hirportal.Services;
 using Hirportal.Bll.ServiceInterfaces;
+using Hirportal.Model;
 
 namespace Hirportal.Controllers
 {

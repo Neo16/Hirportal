@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace Hirportal.Models.ManageViewModels
+namespace Hirportal.Web.ViewModels.ManageViewModels
 {
     public class ExternalLoginsViewModel
     {

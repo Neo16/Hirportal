@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Hirportal.Data;
-using Hirportal.Models;
 using Hirportal.Bll.ServiceInterfaces;
 using AutoMapper;
 using Hirportal.Bll;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Hirportal.Model;
 
 namespace Hirportal
 {

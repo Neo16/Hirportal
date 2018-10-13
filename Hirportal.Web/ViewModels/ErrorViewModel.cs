@@ -1,6 +1,6 @@
 using System;
 
-namespace Hirportal.Models
+namespace Hirportal.Web.ViewModels
 {
     public class ErrorViewModel
     {

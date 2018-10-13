@@ -1,6 +1,6 @@
 ﻿using System;
+using Hirportal.Dal;
 using Hirportal.Model;
-using Hirportal.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +9,12 @@ namespace Hirportal.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Form> Form { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Column> Columns { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -21,6 +27,8 @@ namespace Hirportal.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new ArticleTagsConfiguration());
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Hirportal.Models;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.Controllers;
 using AutoMapper;
 using Hirportal.Bll.Models;
 using Hirportal.Model;
+using Hirportal.Web.ViewModels;
 
 namespace Hirportal.Controllers
 {

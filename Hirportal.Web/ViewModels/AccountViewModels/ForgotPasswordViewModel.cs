@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hirportal.Models.AccountViewModels
+namespace Hirportal.Web.ViewModels.AccountViewModels
 {
-    public class ExternalLoginViewModel
+    public class ForgotPasswordViewModel
     {
         [Required]
         [EmailAddress]
