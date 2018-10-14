@@ -1,10 +1,7 @@
 ﻿using Hirportal.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Hirportal.Bll.ServiceInterfaces;
-using Hirportal.Data;
+using Hirportal.Dal;
 
 namespace Hirportal.Bll.Services
 {

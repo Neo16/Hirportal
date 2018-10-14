@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Hirportal.Data;
 using Hirportal.Bll.ServiceInterfaces;
 using AutoMapper;
 using Hirportal.Bll;
@@ -13,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Hirportal.Model;
 using Hirportal.Bll.Services;
+using Hirportal.Dal;
 
 namespace Hirportal
 {
@@ -60,7 +60,7 @@ namespace Hirportal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -86,6 +86,8 @@ namespace Hirportal
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            context.Seed();
         }
     }
 }

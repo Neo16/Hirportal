@@ -1,7 +1,4 @@
-﻿using Hirportal.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Hirportal.Dal;
 
 namespace Hirportal.Bll.Services
 {

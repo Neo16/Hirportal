@@ -1,5 +1,5 @@
 ﻿using Hirportal.Bll.ServiceInterfaces;
-using Hirportal.Data;
+using Hirportal.Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

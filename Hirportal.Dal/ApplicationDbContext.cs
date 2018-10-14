@@ -1,10 +1,8 @@
-﻿using System;
-using Hirportal.Dal;
-using Hirportal.Model;
+﻿using Hirportal.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hirportal.Data
+namespace Hirportal.Dal
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -10,6 +10,8 @@ namespace Hirportal.Model
 
         public string Title { get; set; }
 
+        public string ThumbnailContent { get; set; }
+
         public string HtmlContent  { get; set; }
 
         public string  CoverImageUrl { get; set; }
