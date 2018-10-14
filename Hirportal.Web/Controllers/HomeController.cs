@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.Controllers;
 using AutoMapper;
-using Hirportal.Bll.Models;
+using Hirportal.Bll.Dtos;
 using Hirportal.Model;
 using Hirportal.Web.ViewModels;
 

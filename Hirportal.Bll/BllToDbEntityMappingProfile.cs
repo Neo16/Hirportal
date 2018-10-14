@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Hirportal.Bll.Models;
+using Hirportal.Bll.Dtos;
 using Hirportal.Model;
 namespace Hirportal.Bll
 {

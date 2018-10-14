@@ -12,6 +12,7 @@ using Hirportal.Bll;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Hirportal.Model;
+using Hirportal.Bll.Services;
 
 namespace Hirportal
 {
@@ -46,7 +47,7 @@ namespace Hirportal
             var assembly = typeof(IEmailSender).Assembly;
             var serviceTypes = assembly.ExportedTypes
                .Where(e => e.IsClass && e.IsPublic && !e.IsAbstract)
-               .Where(e => e.Namespace == "Hirportal.Bll.Services")
+               .Where(e => e.IsSubclassOf(typeof(ServiceBase)))
                .ToList();
 
             foreach (var serviceType in serviceTypes)
