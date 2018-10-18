@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Model;
+using Hirportal.Model.MainPage;
+
 namespace Hirportal.Bll
 {
     public class BllToDbEntityMappingProfile : Profile
@@ -19,7 +22,15 @@ namespace Hirportal.Bll
             CreateMap<Article, ArticleDisplayData>()
                .IncludeBase<Article, ArticleHeaderData>()
                .ForMember(e => e.HtmlContent, f => f.MapFrom(k => k.HtmlContent))
-               .ForMember(e => e.AuthorName, f => f.MapFrom(k => k.Author.UserName));              
+               .ForMember(e => e.AuthorName, f => f.MapFrom(k => k.Author.UserName));
+
+            CreateMap<MainPageBlock, MainPageBlockData>()
+               .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))
+               .ForMember(e => e.Cells, f => f.MapFrom(k => k.MainPageCells));
+
+            CreateMap<MainPageCell, MainPageCellData>()
+              .ForMember(e => e.Article, f => f.MapFrom(k => k.Article))
+              .ForMember(e => e.DisplayId, f => f.MapFrom(k => k.DisplayId));
         }
     }
 }

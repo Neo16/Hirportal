@@ -1,4 +1,5 @@
 ﻿using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,7 @@ namespace Hirportal.Bll.ServiceInterfaces
         Task<IEnumerable<ArticleHeaderData>> FindAsync(ArticleFilterData filter);
 
         Task<IEnumerable<ArticleHeaderData>> GetByColumn(string column);
+
+        Task<MainPageData> GetMainPage();
     }
 }

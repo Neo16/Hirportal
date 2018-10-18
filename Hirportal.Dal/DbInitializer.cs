@@ -1,4 +1,5 @@
 ﻿using Hirportal.Model;
+using Hirportal.Model.MainPage;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace Hirportal.Dal
             }
             context
                 .CreateAdmins()
-                .CreateArticles(100);
+                .CreateArticles(100)
+                .CreateMainPageBlocks(5);
         }
 
         public static ApplicationDbContext CreateAdmins(this ApplicationDbContext context)
@@ -78,6 +80,34 @@ namespace Hirportal.Dal
             context.Columns.AddRange(columns);
             context.Articles.AddRange(articles);
 
+            context.SaveChanges();
+
+            return context;
+        }
+
+        public static ApplicationDbContext CreateMainPageBlocks(this ApplicationDbContext context, int numberOfBlocks)
+        {
+            var articles = context.Articles
+                .ToList();
+            var articleMaxIndex = articles.Count() - 1;
+
+            var r = new Random();
+
+            var blocks = Enumerable.Range(1, numberOfBlocks)
+                .Select(e => new MainPageBlock()
+                {
+                    Name = "Example block " + e.ToString(),
+                    MainPageCells = new List<MainPageCell>()
+                    {
+                        new MainPageCell(){ DisplayId = 1,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
+                        new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
+                        new MainPageCell(){ DisplayId = 3,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
+                        new MainPageCell(){ DisplayId = 4,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))}
+                    }
+                })
+                .ToList();
+
+            context.MainPageBlocks.AddRange(blocks);
             context.SaveChanges();
 
             return context;

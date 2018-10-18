@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Dal;
 using Microsoft.EntityFrameworkCore;
@@ -16,12 +17,23 @@ namespace Hirportal.Bll.Services
         {
         }
 
+        //Tag-kereső oldal külön. 
         public async Task<IEnumerable<ArticleHeaderData>> FindAsync(ArticleFilterData filter)
         {
-            //todo null checkek 
-            return await context.Articles
-              .Where(e => e.Column.Name.ToLower() == filter.ColumnName.ToLower())
-              .Where(e => e.ArticleTags.Any(f => filter.Tags.Contains(f.Tag.Value.ToLower())))
+            var query = context.Articles
+                .AsQueryable();
+
+            if (filter.ColumnName != null)
+            {
+                query = query.Where(e => e.Column.Name.ToLower() == filter.ColumnName.ToLower());
+            }
+            if (filter.Tags != null && filter.Tags.Count > 0)
+            {
+                query = query.Where(e => e.ArticleTags.Any(f => filter.Tags.Contains(f.Tag.Value.ToLower())));
+
+            }
+ 
+            return await query
               .ProjectTo<ArticleHeaderData>()
               .ToListAsync();
         }
@@ -41,6 +53,19 @@ namespace Hirportal.Bll.Services
                 .Where(e => e.Id == articleId)
                 .ProjectTo<ArticleDisplayData>()
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<MainPageData> GetMainPage()
+        {
+            var mainPageData = new MainPageData();
+
+            var blocks = await context.MainPageBlocks
+                .ProjectTo<MainPageBlockData>()
+                .ToListAsync();
+
+            mainPageData.Blocks = blocks;
+
+            return mainPageData;
         }
     }
 }

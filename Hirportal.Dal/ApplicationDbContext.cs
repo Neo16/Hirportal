@@ -1,4 +1,5 @@
 ﻿using Hirportal.Model;
+using Hirportal.Model.MainPage;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,8 @@ namespace Hirportal.Dal
         public DbSet<Column> Columns { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<MainPageBlock> MainPageBlocks { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
