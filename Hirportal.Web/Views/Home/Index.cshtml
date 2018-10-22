@@ -1,29 +1,12 @@
-﻿<h1>Getting Started with Vue.js in .NET Core</h1>
-
-<div id="form">
+﻿<div id="app">   
     <p>
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your full name" v-model="FullName" />
+        <!-- use router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+        <router-link to="/home">Home</router-link>
+        <router-link to="/form">Form</router-link>
     </p>
-
-    <p>
-        <label>Email</label>
-        <input type="text" placeholder="Enter your email" v-model="Email" />
-        <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
-    </p>
-
-    <p>
-        <label>Comments</label>     
-        <vue-editor v-model="Comments"></vue-editor>
-    </p>
-
-    <div id="form-buttons">
-        <button type="button" class="danger" v-on:click="ResetForm">Reset Form</button>
-        <button type="button" class="success" ref="SubmitButton" v-bind:disabled="isSubmitDisabled" v-on:click="SubmitForm">
-            Submit Form
-        </button>
-    </div>  
-    <testcomponent
-            v-bind:text="FullName">
-    </testcomponent>
+    <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
 </div>
