@@ -16,7 +16,7 @@ const notify = require('gulp-notify');
 const scriptsPath = 'Scripts/**/*.js';
 const vuePath = 'Scripts/**/*.vue';
 const stylesPath = 'Styles/**/*.scss';
-const scriptWatchPath = 'Scripts/**/*';
+const scriptWatchPath = 'Scripts/Components/**/*.vue';
 /**
  * CSS Processing
  * */
@@ -111,7 +111,6 @@ gulp.task('js:dev', () => {
 // Everytime we save JS/Sass files, run the development tasks
 // to process and perform conversions
 gulp.task('watch', () => {
-    gulp.watch(stylesPath, gulp.task('sass:dev')());
-    gulp.watch(scriptWatchPath, gulp.task('js:dev')());
-    gulp.watch(vuePath, gulp.task('js:dev')());
+    gulp.watch(stylesPath, gulp.task('sass:dev'));   
+    gulp.watch(scriptWatchPath, gulp.task('js:dev'));
 });

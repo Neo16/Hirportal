@@ -1,5 +1,6 @@
 ﻿<template>
     <div>
+        <h1>Main page</h1>
         <articlesblock 
             v-for="(block, index) in blocks"
             v-bind:cells="block.cells"        
@@ -17,12 +18,10 @@
         },
         data: function () {
             return {
-                blocks: [],
+                blocks: []                
             }
         },
-        mounted() {
-            console.log(config.apiRoot);
-
+        mounted() {          
             axios
                 .get(config.apiRoot + '/mainpage')
                 .then(response => (this.blocks = response.data.blocks))
