@@ -21,6 +21,8 @@
             }
         },
         mounted() {
+            console.log(config.apiRoot);
+
             axios
                 .get(config.apiRoot + '/mainpage')
                 .then(response => (this.blocks = response.data.blocks))

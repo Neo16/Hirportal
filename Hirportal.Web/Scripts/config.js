@@ -1,3 +1,4 @@
 ﻿export const config = {
-    apiRoot: 'http://localhost:51644/api'
+    apiRoot:
+        window.location.protocol + '//' + window.location.host + '/api'
 };
