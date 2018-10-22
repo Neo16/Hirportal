@@ -41,8 +41,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1f9e7986", __vue__options__)
+    hotAPI.createRecord("data-v-867fdbc4", __vue__options__)
   } else {
-    hotAPI.reload("data-v-1f9e7986", __vue__options__)
+    hotAPI.reload("data-v-867fdbc4", __vue__options__)
   }
-})()})}
+})()}
