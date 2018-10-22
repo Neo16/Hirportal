@@ -61,6 +61,10 @@ gulp.task('sass:dev', () => {
  * */
 // Production Only
 gulp.task('js:prod', () => {
+    gulp.src(vuePath)
+        .pipe(vueify())
+        .pipe(gulp.dest('Scripts/'));
+
     return  gulp.src(scriptsPath)
         // First process thru Webpack
         // setting the mode to 'production'
@@ -109,4 +113,5 @@ gulp.task('js:dev', () => {
 gulp.task('watch', () => {
     gulp.watch(stylesPath, gulp.task('sass:dev')());
     gulp.watch(scriptWatchPath, gulp.task('js:dev')());
+    gulp.watch(vuePath, gulp.task('js:dev')());
 });

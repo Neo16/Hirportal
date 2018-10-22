@@ -1,4 +1,4 @@
-﻿import Home from './Components/Pages/Home.js';
+﻿import MainPage from './Components/Pages/MainPage.js';
 import FormExample from './Components/Pages/FormExample.js';
 import VueRouter from 'vue-router';
 
@@ -9,7 +9,7 @@ import VueRouter from 'vue-router';
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/', component: Home },
+    { path: '/', component: MainPage },
     { path: '/form', component: FormExample }
 ];
 
@@ -24,6 +24,9 @@ const router = new VueRouter({
 // 4. Create and mount the root instance.
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
+
 const app = new Vue({
     router
 }).$mount('#app');
+
+

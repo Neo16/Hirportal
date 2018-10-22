@@ -86,4 +86,4 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   } else {
     hotAPI.reload("data-v-5e2135c1", __vue__options__)
   }
-})()}
+})()})}
