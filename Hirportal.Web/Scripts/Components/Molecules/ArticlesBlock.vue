@@ -1,14 +1,13 @@
 ﻿<template>
     <div>
-        <articlecell 
-              v-for="cell in cells"
-              :key="cell.displayId"
-              v-bind:article="cell.article">
+        <articlecell v-for="cell in cells"
+                     :key="cell.displayId"                     
+                     v-bind:article="cell.article">
         </articlecell>
     </div>
 </template>
 
-<script>  
+<script>
     import articlecell from '../Atoms/ArticleCell'
     export default {
         components: {
