@@ -141,6 +141,17 @@ eval(";(function(){\n'use strict';\n\nObject.defineProperty(exports, \"__esModul
 
 /***/ }),
 
+/***/ "./Scripts/Components/testComponent.js":
+/*!*********************************************!*\
+  !*** ./Scripts/Components/testComponent.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval(";(function(){\n'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = {\n    props: ['text'],\n    template: '<h3>{{ text }}</h3>'\n};\n})()\nif (module.exports.__esModule) module.exports = module.exports.default\nvar __vue__options__ = (typeof module.exports === \"function\"? module.exports.options: module.exports)\nif (__vue__options__.functional) {console.error(\"[vueify] functional components are not supported and should be defined in plain js files using render functions.\")}\n__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h3',[_vm._v(_vm._s(_vm.text))])}\n__vue__options__.staticRenderFns = []\nif (false) {}\n\n//# sourceURL=webpack:///./Scripts/Components/testComponent.js?");
+
+/***/ }),
+
 /***/ "./Scripts/config.js":
 /*!***************************!*\
   !*** ./Scripts/config.js ***!
@@ -149,7 +160,7 @@ eval(";(function(){\n'use strict';\n\nObject.defineProperty(exports, \"__esModul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"config\", function() { return config; });\n﻿const config = {\r\n    apiRoot: 'https://localhost:44352/api/'\r\n};\n\n//# sourceURL=webpack:///./Scripts/config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"config\", function() { return config; });\n﻿const config = {\r\n    apiRoot: 'http://localhost:51644/api'\r\n};\n\n//# sourceURL=webpack:///./Scripts/config.js?");
 
 /***/ }),
 
@@ -202,12 +213,12 @@ eval("(function(t,e){ true?module.exports=e():undefined})(\"undefined\"!=typeof 
 
 /***/ 0:
 /*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./Scripts/config.js ./Scripts/root.js ./Scripts/utils.js ./Scripts/Components/TestComponent.js ./Scripts/Components/Atoms/ArticleCell.js ./Scripts/Components/Molecules/ArticlesBlock.js ./Scripts/Components/Pages/FormExample.js ./Scripts/Components/Pages/MainPage.js ***!
+  !*** multi ./Scripts/config.js ./Scripts/root.js ./Scripts/utils.js ./Scripts/Components/testComponent.js ./Scripts/Components/Molecules/ArticlesBlock.js ./Scripts/Components/Atoms/ArticleCell.js ./Scripts/Components/Pages/FormExample.js ./Scripts/Components/Pages/MainPage.js ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\config.js */\"./Scripts/config.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\root.js */\"./Scripts/root.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\utils.js */\"./Scripts/utils.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\Components\\TestComponent.js */\"./Scripts/Components/TestComponent.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Atoms\\ArticleCell.js */\"./Scripts/Components/Atoms/ArticleCell.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Molecules\\ArticlesBlock.js */\"./Scripts/Components/Molecules/ArticlesBlock.js\");\n__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Pages\\FormExample.js */\"./Scripts/Components/Pages/FormExample.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Pages\\MainPage.js */\"./Scripts/Components/Pages/MainPage.js\");\n\n\n//# sourceURL=webpack:///multi_./Scripts/config.js_./Scripts/root.js_./Scripts/utils.js_./Scripts/Components/TestComponent.js_./Scripts/Components/Atoms/ArticleCell.js_./Scripts/Components/Molecules/ArticlesBlock.js_./Scripts/Components/Pages/FormExample.js_./Scripts/Components/Pages/MainPage.js?");
+eval("__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\config.js */\"./Scripts/config.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\root.js */\"./Scripts/root.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\utils.js */\"./Scripts/utils.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\Components\\testComponent.js */\"./Scripts/Components/testComponent.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Molecules\\ArticlesBlock.js */\"./Scripts/Components/Molecules/ArticlesBlock.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Atoms\\ArticleCell.js */\"./Scripts/Components/Atoms/ArticleCell.js\");\n__webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Pages\\FormExample.js */\"./Scripts/Components/Pages/FormExample.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Tamas\\Documents\\Hírportál\\Hirportal\\Hirportal.Web\\Scripts\\Components\\Pages\\MainPage.js */\"./Scripts/Components/Pages/MainPage.js\");\n\n\n//# sourceURL=webpack:///multi_./Scripts/config.js_./Scripts/root.js_./Scripts/utils.js_./Scripts/Components/testComponent.js_./Scripts/Components/Molecules/ArticlesBlock.js_./Scripts/Components/Atoms/ArticleCell.js_./Scripts/Components/Pages/FormExample.js_./Scripts/Components/Pages/MainPage.js?");
 
 /***/ })
 
