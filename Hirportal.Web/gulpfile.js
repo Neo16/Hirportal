@@ -1,5 +1,7 @@
 ﻿/// <binding BeforeBuild='js:prod, sass:prod' ProjectOpened='watch' />
 'use strict';
+//const components = require('gulp-single-file-components');
+const vueify = require('gulp-vueify2');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
@@ -11,8 +13,10 @@ const uglify = require('gulp-uglify');
 const webpack = require('webpack-stream');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
-const scriptsPath = 'Scripts/*.js';
+const scriptsPath = 'Scripts/**/*.js';
+const vuePath = 'Scripts/**/*.vue';
 const stylesPath = 'Styles/**/*.scss';
+const scriptWatchPath = 'Scripts/**/*';
 /**
  * CSS Processing
  * */
@@ -38,7 +42,7 @@ gulp.task('sass:prod', () => {
 });
 // Development only
 gulp.task('sass:dev', () => {
-    return gulp.src(stylesPath)
+    return gulp.src(stylesPath)       
         // Handles errors and prevents from breaking the pipeline
         .pipe(plumber({
             errorHandler(err) {
@@ -57,7 +61,7 @@ gulp.task('sass:dev', () => {
  * */
 // Production Only
 gulp.task('js:prod', () => {
-    gulp.src(scriptsPath)
+    return  gulp.src(scriptsPath)
         // First process thru Webpack
         // setting the mode to 'production'
         .pipe(webpack({
@@ -75,8 +79,13 @@ gulp.task('js:prod', () => {
         .pipe(gulp.dest('wwwroot/js'));
 });
 // Development only
-gulp.task('js:dev', () => {
-    gulp.src(scriptsPath)
+gulp.task('js:dev', () => {   
+
+    gulp.src(vuePath)
+        .pipe(vueify())
+        .pipe(gulp.dest('Scripts/'));
+
+    return gulp.src(scriptsPath)   
         // Handles errors and prevents from breaking the pipeline
         .pipe(plumber({
             errorHandler(err) {
@@ -85,7 +94,7 @@ gulp.task('js:dev', () => {
                     message: err.toString()
                 })(err);
             }
-        }))
+        }))        
         .pipe(webpack({
             mode: 'development'
         }))
@@ -98,6 +107,6 @@ gulp.task('js:dev', () => {
 // Everytime we save JS/Sass files, run the development tasks
 // to process and perform conversions
 gulp.task('watch', () => {
-    gulp.watch(stylesPath, ['sass:dev']);
-    gulp.watch(scriptsPath, ['js:dev']);
+    gulp.watch(stylesPath, gulp.task('sass:dev')());
+    gulp.watch(scriptWatchPath, gulp.task('js:dev')());
 });

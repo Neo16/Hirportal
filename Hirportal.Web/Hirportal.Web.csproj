@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\Components\testComponent.js" />
     <None Remove="Scripts\utills.js" />
   </ItemGroup>
 

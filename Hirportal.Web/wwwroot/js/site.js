@@ -86,15 +86,26 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./Scripts/site.js":
+/***/ "./Scripts/Components/testComponent.js":
+/*!*********************************************!*\
+  !*** ./Scripts/Components/testComponent.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval(";(function(){\n'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = {\n    props: ['text'],\n    template: '<h3>{{ text }}</h3>'\n\n};\n})()\nif (module.exports.__esModule) module.exports = module.exports.default\nvar __vue__options__ = (typeof module.exports === \"function\"? module.exports.options: module.exports)\nif (__vue__options__.functional) {console.error(\"[vueify] functional components are not supported and should be defined in plain js files using render functions.\")}\n__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h3',[_vm._v(_vm._s(_vm.text))])}\n__vue__options__.staticRenderFns = []\nif (false) {}\n\n//# sourceURL=webpack:///./Scripts/Components/testComponent.js?");
+
+/***/ }),
+
+/***/ "./Scripts/root.js":
 /*!*************************!*\
-  !*** ./Scripts/site.js ***!
+  !*** ./Scripts/root.js ***!
   \*************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ \"./Scripts/utils.js\");\n/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-editor */ \"./node_modules/vue2-editor/dist/vue2-editor.js\");\n/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_editor__WEBPACK_IMPORTED_MODULE_1__);\n﻿\r\n\r\n\r\nnew Vue({\r\n    el: '#form',\r\n    components: {\r\n        VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_1__[\"VueEditor\"]\r\n    },\r\n    data: {\r\n        FullName: '',\r\n        Email: '',\r\n        Comments: '',\r\n        InvalidEmail: false,\r\n        content: ''\r\n    },\r\n    computed: {\r\n        isSubmitDisabled() {\r\n            let isDisabled = true;\r\n\r\n            if (\r\n                this.FullName !== '' &&\r\n                this.Email !== '' &&\r\n                this.Comments !== ''\r\n            ) {\r\n                isDisabled = false;\r\n            }\r\n\r\n            return isDisabled;\r\n        }\r\n    },\r\n    methods: {\r\n        ResetForm() {\r\n            this.FullName = '';\r\n            this.Email = '';\r\n            this.Comments = '';\r\n        },\r\n        SubmitForm() {\r\n            let submit = true;\r\n\r\n            if (!Object(_utils__WEBPACK_IMPORTED_MODULE_0__[\"validateEmail\"])(this.Email)) {\r\n                this.InvalidEmail = true;\r\n                submit = false;\r\n            } else {\r\n                this.InvalidEmail = false;\r\n            }\r\n\r\n            if (submit) {\r\n                axios({\r\n                    method: 'post',\r\n                    url: '/Home/SubmitedForm',\r\n                    data: this.$data\r\n                }).then(res => {\r\n                    alert('Successfully submitted feedback form ');\r\n                    this.$refs.SubmitButton.setAttribute(\"disabled\", \"disabled\");\r\n                }).catch(err => {\r\n                    alert(`There was an error submitting your form. See details: ${err}`);\r\n                });\r\n            }\r\n        }\r\n    }\r\n});\n\n//# sourceURL=webpack:///./Scripts/site.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ \"./Scripts/utils.js\");\n/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-editor */ \"./node_modules/vue2-editor/dist/vue2-editor.js\");\n/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_editor__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _Components_testComponent_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/testComponent.js */ \"./Scripts/Components/testComponent.js\");\n/* harmony import */ var _Components_testComponent_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Components_testComponent_js__WEBPACK_IMPORTED_MODULE_2__);\n﻿\r\n\r\n\r\n\r\nnew Vue({\r\n    el: '#form',\r\n    components: {\r\n        VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_1__[\"VueEditor\"],\r\n        'testcomponent': _Components_testComponent_js__WEBPACK_IMPORTED_MODULE_2___default.a\r\n    },\r\n    data: {\r\n        FullName: '',\r\n        Email: '',\r\n        Comments: '',\r\n        InvalidEmail: false,\r\n        content: ''\r\n    },\r\n    computed: {\r\n        isSubmitDisabled() {\r\n            let isDisabled = true;\r\n\r\n            if (\r\n                this.FullName !== '' &&\r\n                this.Email !== '' &&\r\n                this.Comments !== ''\r\n            ) {\r\n                isDisabled = false;\r\n            }\r\n\r\n            return isDisabled;\r\n        }\r\n    },\r\n    methods: {\r\n        ResetForm() {\r\n            this.FullName = '';\r\n            this.Email = '';\r\n            this.Comments = '';\r\n        },\r\n        SubmitForm() {\r\n            let submit = true;\r\n\r\n            if (!Object(_utils__WEBPACK_IMPORTED_MODULE_0__[\"validateEmail\"])(this.Email)) {\r\n                this.InvalidEmail = true;\r\n                submit = false;\r\n            } else {\r\n                this.InvalidEmail = false;\r\n            }\r\n\r\n            if (submit) {\r\n                axios({\r\n                    method: 'post',\r\n                    url: '/Home/SubmitedForm',\r\n                    data: this.$data\r\n                }).then(res => {\r\n                    alert('Successfully submitted feedback form ');\r\n                    this.$refs.SubmitButton.setAttribute(\"disabled\", \"disabled\");\r\n                }).catch(err => {\r\n                    alert(`There was an error submitting your form. See details: ${err}`);\r\n                });\r\n            }\r\n        }\r\n    }   \r\n});\n\n//# sourceURL=webpack:///./Scripts/root.js?");
 
 /***/ }),
 
@@ -123,12 +134,12 @@ eval("(function(t,e){ true?module.exports=e():undefined})(\"undefined\"!=typeof 
 
 /***/ 0:
 /*!**************************************************!*\
-  !*** multi ./Scripts/site.js ./Scripts/utils.js ***!
+  !*** multi ./Scripts/root.js ./Scripts/utils.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\site.js */\"./Scripts/site.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\utils.js */\"./Scripts/utils.js\");\n\n\n//# sourceURL=webpack:///multi_./Scripts/site.js_./Scripts/utils.js?");
+eval("__webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\root.js */\"./Scripts/root.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Neo\\source\\repos\\Hirportal\\Hirportal.Web\\Scripts\\utils.js */\"./Scripts/utils.js\");\n\n\n//# sourceURL=webpack:///multi_./Scripts/root.js_./Scripts/utils.js?");
 
 /***/ })
 

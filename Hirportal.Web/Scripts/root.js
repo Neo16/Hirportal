@@ -1,10 +1,12 @@
 ﻿import { validateEmail } from './utils';
 import { VueEditor } from 'vue2-editor';
+import TestComponent from './Components/testComponent.js';
 
 new Vue({
     el: '#form',
     components: {
-        VueEditor
+        VueEditor,
+        'testcomponent': TestComponent
     },
     data: {
         FullName: '',
@@ -57,5 +59,5 @@ new Vue({
                 });
             }
         }
-    }
+    }   
 });
