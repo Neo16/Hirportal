@@ -1,5 +1,6 @@
 ﻿import MainPage from './Components/Pages/MainPage.js';
 import FormExample from './Components/Pages/FormExample.js';
+import Navbar from './Components/Molecules/Navbar.js';
 import VueRouter from 'vue-router';
 
 
@@ -9,7 +10,7 @@ import VueRouter from 'vue-router';
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/', component: MainPage },
+    { path: '*', component: MainPage },
     { path: '/form', component: FormExample }
 ];
 
@@ -26,7 +27,10 @@ const router = new VueRouter({
 // whole app router-aware.
 
 const app = new Vue({
-    router
+    router,
+    components: {
+        'navbar': Navbar
+    }
 }).$mount('#app');
 
 

@@ -83,8 +83,13 @@ namespace Hirportal
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
+                    name: "api",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                  name: "default",
+                  template: "{*url}",
+                  defaults: new { controller = "Home", action = "Index" });
             });
 
             context.Seed();

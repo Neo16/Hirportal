@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <p>This is a cell2</p>
+        <p>This is a cell</p>
         <p>Title: {{article.title}}</p>
     </div> 
 </template>

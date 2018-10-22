@@ -9,6 +9,7 @@
     <None Remove="Scripts\Components\Atoms\ArticleCell.js" />
     <None Remove="Scripts\Components\Layout.js" />
     <None Remove="Scripts\Components\Molecules\ArticlesBlock.js" />
+    <None Remove="Scripts\Components\Molecules\Navbar.js" />
     <None Remove="Scripts\Components\Pages\FormExample.js" />
     <None Remove="Scripts\Components\Pages\Home.js" />
     <None Remove="Scripts\Components\Pages\MainPage.js" />
@@ -40,6 +41,10 @@
     <ProjectReference Include="..\Hirportal.Bll\Hirportal.Bll.csproj" />
     <ProjectReference Include="..\Hirportal.Dal\Hirportal.Dal.csproj" />
     <ProjectReference Include="..\Hirportal.Model\Hirportal.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 </Project>

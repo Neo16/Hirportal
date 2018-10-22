@@ -12,6 +12,8 @@
 <script>
     import articlesblock from '../Molecules/ArticlesBlock.js';
     import { config } from '../../config';
+    import axios from 'axios';
+    
     export default {
         components: {
             articlesblock
