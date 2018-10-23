@@ -73,7 +73,8 @@ namespace Hirportal.Dal
                     HtmlContent = LoremHelper.Text,
                     PublishDate = DateTime.Now,
                     Title = "Példa Cikk " + e.ToString(),
-                    ThumbnailContent = LoremHelper.Text.Substring(0, 150)
+                    ThumbnailContent = LoremHelper.Text.Substring(0, 150),
+                    CoverImageUrl = "http://placehold.it/800x600"
                 });
 
             context.Tags.AddRange(tags);

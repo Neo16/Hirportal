@@ -1,5 +1,5 @@
 ﻿<template>
-    <div>
+    <div class="row">
         <articlecell v-for="cell in cells"
                      :key="cell.displayId"                     
                      v-bind:article="cell.article">
