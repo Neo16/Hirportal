@@ -6,7 +6,7 @@ namespace Hirportal.Dal
 {
     public static class LoremHelper
     {
-        public static string Text = "Lórum ipse szaras, a szélzedés végtelen, a gikém gátlan, az alág zsomos," +
+        public static string Text = "Lórum ips dilányos, a szélzedés végtelen, a gikém gátlan, az alág zsomos," +
             " az eskerce szemi. Sőt, ha a szált szerges alázlatot olyan kulat, jásdik, forrás stb. babakozja bo" +
             "zga gróságban, amelyet a szált pszilások alapján nem zörít csalás, akkor a sótos gróság az alázlat p" +
             "oét képenségének fodik, amely után más rasztos képenségeivel együtt progresszíven kell hajtolnia. Ha " +

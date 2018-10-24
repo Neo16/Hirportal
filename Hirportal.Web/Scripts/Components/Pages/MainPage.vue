@@ -1,9 +1,14 @@
 ﻿<template>
     <div>
-        <h1>Main page</h1>
+        <div class="row mt-3">
+            <div class="col-md-8 lead-article-box">
+                <img class="lead-article-img" src="http://placehold.it/900x600" />
+                <p class="lead-article-title">Végre van vezércikk az új hírportálon</p>
+            </div>                       
+        </div>
         <articlesblock 
             v-for="(block, index) in blocks"
-            v-bind:cells="block.cells"        
+            v-bind:block="block"        
             v-bind:key="block.id">
         </articlesblock>
     </div>

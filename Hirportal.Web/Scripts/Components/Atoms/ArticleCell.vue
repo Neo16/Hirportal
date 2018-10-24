@@ -1,7 +1,10 @@
 ﻿<template>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <p>This is a cell</p>
-        <p>Title: {{article.title}}</p>
+    <div class="col-sm-6 col-lg-3 article-cell">
+
+        <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
+
+        <p class="article-title">{{article.title}}</p>
+        <p class="article-thumbnail-content">{{article.thumbnailContent}} </p>
     </div> 
 </template>
 

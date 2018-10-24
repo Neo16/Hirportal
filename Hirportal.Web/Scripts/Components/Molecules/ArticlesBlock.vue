@@ -1,9 +1,15 @@
 ﻿<template>
-    <div class="row">
-        <articlecell v-for="cell in cells"
-                     :key="cell.displayId"                     
-                     v-bind:article="cell.article">
-        </articlecell>
+    <div class="article-block">
+        <div class="d-flex article-block-header">
+            <p class="article-block-title">{{block.name}}</p>
+            <div></div>
+        </div>
+        <div class="row article-block-content">
+            <articlecell v-for="cell in block.cells"
+                         :key="cell.displayId"
+                         v-bind:article="cell.article">
+            </articlecell>
+        </div>       
     </div>
 </template>
 
@@ -13,6 +19,6 @@
         components: {
             articlecell
         },
-        props: ['cells']
+        props: ['block']
     }
 </script>
