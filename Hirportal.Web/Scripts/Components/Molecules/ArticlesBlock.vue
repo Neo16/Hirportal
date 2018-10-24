@@ -5,7 +5,8 @@
             <div></div>
         </div>
         <div class="row article-block-content">
-            <articlecell v-for="cell in block.cells"
+            <articlecell class="col-sm-6 col-lg-3"
+                         v-for="cell in block.cells"
                          :key="cell.displayId"
                          v-bind:article="cell.article">
             </articlecell>

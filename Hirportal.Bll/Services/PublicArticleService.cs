@@ -1,4 +1,5 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Bll.ServiceInterfaces;
@@ -59,11 +60,23 @@ namespace Hirportal.Bll.Services
         {
             var mainPageData = new MainPageData();
 
-            var blocks = await context.MainPageBlocks
-                .ProjectTo<MainPageBlockData>()
-                .ToListAsync();
+            var blocks = await context.MainPageBlocks      
+                .Include(e => e.MainPageCells)
+                .ThenInclude(e => e.Article)
+                .ToListAsync();            
 
-            mainPageData.Blocks = blocks;
+            var subBlocks = blocks
+                .Where(e => e.IsLeadBlock == false)
+                .Select(e => Mapper.Map<MainPageBlockData>(e))
+                .ToList();
+            
+            var leadBlock  = blocks
+               .Where(e => e.IsLeadBlock == true)
+               .Select(e => Mapper.Map<MainPageBlockData>(e))
+               .FirstOrDefault();
+            
+            mainPageData.Blocks = subBlocks;
+            mainPageData.LeadBlock = leadBlock;
 
             return mainPageData;
         }

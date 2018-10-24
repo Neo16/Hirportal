@@ -64,7 +64,7 @@ namespace Hirportal.Dal
 
             var articles = Enumerable.Range(1, numberOfArticles)
                 .Select(e => new Article()
-                {                    
+                {
                     ArchiveDate = DateTime.Today.AddDays(30),
                     ArticleTags = tags.GetRange(0, r.Next(0, tags.Count - 1))
                                   .Select(t => new ArticleTag() { Tag = t }).ToList(),
@@ -72,8 +72,8 @@ namespace Hirportal.Dal
                     Column = columns.ElementAt(r.Next(0, columns.Count - 1)),
                     HtmlContent = LoremHelper.Text,
                     PublishDate = DateTime.Now,
-                    Title = "Példa Cikk " + e.ToString(),                   
-                    CoverImageUrl = r.Next(0, 5) < 4 ? "http://placehold.it/800x" + r.Next(400, 801).ToString() : null                  
+                    Title = "Példa Cikk " + e.ToString(),
+                    CoverImageUrl = r.Next(0, 5) < 4 ? "http://placehold.it/800x" + r.Next(400, 801).ToString() : null
                 });
 
             var articleList = articles.ToList();
@@ -81,7 +81,7 @@ namespace Hirportal.Dal
             foreach (Article a in articleList)
             {
                 a.ThumbnailContent = a.CoverImageUrl == null ? LoremHelper.Text.Substring(0, 300) : LoremHelper.Text.Substring(0, 150);
-                
+
                 if (a.CoverImageUrl == null)
                 {
                     a.Title = a.Title + " " + a.Title;
@@ -115,9 +115,20 @@ namespace Hirportal.Dal
                         new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
                         new MainPageCell(){ DisplayId = 3,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
                         new MainPageCell(){ DisplayId = 4,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))}
-                    }
+                    },
+                    IsLeadBlock = false
                 })
                 .ToList();
+
+            var blockList = blocks.ToList();
+            blockList[0].IsLeadBlock = true;
+            blockList[0].MainPageCells.AddRange(
+                new List<MainPageCell>()
+                {
+                    new MainPageCell(){ DisplayId = 1,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
+                    new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},                       
+                }
+            );
 
             context.MainPageBlocks.AddRange(blocks);
             context.SaveChanges();

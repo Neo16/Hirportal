@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="col-sm-6 col-lg-3 article-cell">
+    <div class="article-cell">
 
         <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
 

@@ -9,10 +9,12 @@ namespace Hirportal.Model.MainPage
     /// </summary>
     public class MainPageBlock
     {
+        public bool IsLeadBlock { get; set; }
+
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<MainPageCell> MainPageCells { get; set; }
+        public List<MainPageCell> MainPageCells { get; set; }
     }
 }
