@@ -10,13 +10,15 @@ using Hirportal.Web.ViewModels;
 
 namespace Hirportal.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly IFormService formService;
+        protected readonly IMapper mapper;
 
-        public HomeController(IMapper mapper, IFormService formService): base(mapper)
+        public HomeController(IMapper mapper, IFormService formService)
         {
             this.formService = formService;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()

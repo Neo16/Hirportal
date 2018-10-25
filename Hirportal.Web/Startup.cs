@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Hirportal.Model;
 using Hirportal.Bll.Services;
 using Hirportal.Dal;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Hirportal.Web.WebServices;
 
 namespace Hirportal
 {
@@ -43,17 +46,34 @@ namespace Hirportal
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication()
+             .AddCookie()
+             .AddJwtBearer(options =>
+             {
+                 options.RequireHttpsMetadata = false;
+                 options.SaveToken = true;
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     //Todo kitenni configba
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd")),
+                     ValidateAudience = false,
+                     ValidIssuer = "https://localhost:44381/"
+                 };
+             });
+
             // Add application services.
             var assembly = typeof(IEmailSender).Assembly;
             var serviceTypes = assembly.ExportedTypes
                .Where(e => e.IsClass && e.IsPublic && !e.IsAbstract)
                .Where(e => e.IsSubclassOf(typeof(ServiceBase)))
-               .ToList();
+               .ToList();         
 
             foreach (var serviceType in serviceTypes)
             {
                 services.AddTransient(serviceType.GetInterface($"I{serviceType.Name}"), serviceType);
             }
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<CurrentUserService>();
 
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
