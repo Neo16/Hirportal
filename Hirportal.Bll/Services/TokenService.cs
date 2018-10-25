@@ -34,9 +34,8 @@ namespace Hirportal.Bll.Services
             };
         }
 
-        public async Task<TokenDto> GetTokenForUserAsync(ApplicationUser user)
+        public async Task<LoginResultDto> GetTokenForUserAsync(ApplicationUser user)
         {
-
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Issuer = "https://localhost:44381/",
@@ -51,9 +50,10 @@ namespace Hirportal.Bll.Services
 
             if (res.Succeeded)
             {
-                return new TokenDto
+                return new LoginResultDto
                 {
-                    AccessToken = accessToken,
+                    UserToken = accessToken,
+                    UserName = user.UserName
                 };
             }
 

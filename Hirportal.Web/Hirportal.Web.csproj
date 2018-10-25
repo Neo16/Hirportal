@@ -12,6 +12,7 @@
     <None Remove="Scripts\Components\Molecules\Navbar.js" />
     <None Remove="Scripts\Components\Pages\FormExample.js" />
     <None Remove="Scripts\Components\Pages\Home.js" />
+    <None Remove="Scripts\Components\Pages\LoginPage.js" />
     <None Remove="Scripts\Components\Pages\MainPage.js" />
     <None Remove="Scripts\Components\testComponent.js" />
     <None Remove="Scripts\Components\Vlink.js" />

@@ -1,8 +1,9 @@
 ﻿import MainPage from './Components/Pages/MainPage.js';
 import FormExample from './Components/Pages/FormExample.js';
+import LoginPage from './Components/Pages/LoginPage.js';
 import Navbar from './Components/Molecules/Navbar.js';
 import VueRouter from 'vue-router';
-
+import { store } from './sore';
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -11,7 +12,8 @@ import VueRouter from 'vue-router';
 // We'll talk about nested routes later.
 const routes = [
     { path: '*', component: MainPage },
-    { path: '/form', component: FormExample }
+    { path: '/form', component: FormExample },
+    { path: '/login', component: LoginPage }
 ];
 
 // 3. Create the router instance and pass the `routes` option
@@ -30,6 +32,12 @@ const app = new Vue({
     router,
     components: {
         'navbar': Navbar
+    },
+    mounted() {
+        var info = JSON.parse(localStorage.getItem('fusionLoginInfo'));
+        if (info) {
+            store.setLoginInfo(info.userName, info.userToken);
+        }
     }
 }).$mount('#app');
 

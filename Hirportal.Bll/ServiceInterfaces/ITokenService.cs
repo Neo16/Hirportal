@@ -6,6 +6,6 @@ namespace Hirportal.Bll.ServiceInterfaces
 {
     public interface ITokenService
     {
-        Task<TokenDto> GetTokenForUserAsync(ApplicationUser user);
+        Task<LoginResultDto> GetTokenForUserAsync(ApplicationUser user);
     }
 }

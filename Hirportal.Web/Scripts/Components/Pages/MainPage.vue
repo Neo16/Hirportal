@@ -32,13 +32,13 @@
                 leadBlock: null
             }
         },
-        mounted() {
+        mounted() {                        
             axios
                 .get(config.apiRoot + '/mainpage')
                 .then(response => {
                     this.subBlocks = response.data.blocks;
                     this.leadBlock = response.data.leadBlock;
-                })
+                });
         }
     }
 </script>
