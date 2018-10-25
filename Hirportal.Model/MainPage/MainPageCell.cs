@@ -18,5 +18,7 @@ namespace Hirportal.Model.MainPage
         public Guid MainPageBlockId { get; set; }
 
         public int DisplayId { get; set; }
+
+        public CellSize CellSize { get; set; }
     }
 }

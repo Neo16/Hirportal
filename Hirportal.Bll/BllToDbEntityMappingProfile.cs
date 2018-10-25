@@ -26,11 +26,13 @@ namespace Hirportal.Bll
 
             CreateMap<MainPageBlock, MainPageBlockData>()
                .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))
+               .ForMember(e => e.IsLeadBlock, f => f.MapFrom(k => k.IsLeadBlock))
                .ForMember(e => e.Cells, f => f.MapFrom(k => k.MainPageCells));
 
             CreateMap<MainPageCell, MainPageCellData>()
               .ForMember(e => e.Article, f => f.MapFrom(k => k.Article))
-              .ForMember(e => e.DisplayId, f => f.MapFrom(k => k.DisplayId));
+              .ForMember(e => e.CellSize, f => f.MapFrom(k => k.CellSize))
+              .ForMember(e => e.DisplayIndex, f => f.MapFrom(k => k.DisplayId));
         }
     }
 }

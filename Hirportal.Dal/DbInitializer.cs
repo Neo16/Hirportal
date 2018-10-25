@@ -73,7 +73,7 @@ namespace Hirportal.Dal
                     HtmlContent = LoremHelper.Text,
                     PublishDate = DateTime.Now,
                     Title = "Példa Cikk " + e.ToString(),
-                    CoverImageUrl = r.Next(0, 5) < 4 ? "http://placehold.it/800x" + r.Next(400, 801).ToString() : null
+                    CoverImageUrl = r.Next(0, 5) < 4 ? "http://placehold.it/800x" + r.Next(500, 741).ToString() : null
                 });
 
             var articleList = articles.ToList();
@@ -105,30 +105,42 @@ namespace Hirportal.Dal
 
             var r = new Random();
 
+            //Add blocks 
             var blocks = Enumerable.Range(1, numberOfBlocks)
                 .Select(e => new MainPageBlock()
                 {
                     Name = "Example block " + e.ToString(),
                     MainPageCells = new List<MainPageCell>()
                     {
-                        new MainPageCell(){ DisplayId = 1,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
-                        new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
-                        new MainPageCell(){ DisplayId = 3,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
-                        new MainPageCell(){ DisplayId = 4,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))}
+                        new MainPageCell(){ DisplayId = 1,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex)), CellSize=CellSize.NORMAL},
+                        new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex)), CellSize=CellSize.NORMAL},
+                        new MainPageCell(){ DisplayId = 3,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex)), CellSize=CellSize.NORMAL},
+                        new MainPageCell(){ DisplayId = 4,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex)), CellSize=CellSize.NORMAL}
                     },
                     IsLeadBlock = false
                 })
                 .ToList();
 
+            //Set leadblock 
             var blockList = blocks.ToList();
             blockList[0].IsLeadBlock = true;
+            blockList[0].MainPageCells[0].CellSize = CellSize.LEAD; //vezércikk (8 széles)
+            blockList[0].MainPageCells[1].CellSize = CellSize.WIDE; // mellette egy 4 széles cikk 
             blockList[0].MainPageCells.AddRange(
                 new List<MainPageCell>()
                 {
                     new MainPageCell(){ DisplayId = 1,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
-                    new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},                       
+                    new MainPageCell(){ DisplayId = 2,  Article =  articles.ElementAt(r.Next(0,articleMaxIndex))},
                 }
             );
+
+            //Set some cells to bigger sizes 
+            blockList[1].MainPageCells.RemoveAt(0);
+            blockList[1].MainPageCells.ForEach(e => e.CellSize = CellSize.WIDE);
+
+            blockList[2].MainPageCells.RemoveAt(0);
+            blockList[2].MainPageCells.RemoveAt(1);
+            blockList[2].MainPageCells.ForEach(e => e.CellSize = CellSize.LARGE);
 
             context.MainPageBlocks.AddRange(blocks);
             context.SaveChanges();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hirportal.Model.MainPage;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,6 +9,8 @@ namespace Hirportal.Bll.Dtos.MainPage
     {
         public ArticleHeaderData Article { get; set; }
 
-        public int DisplayId { get; set; }
+        public int DisplayIndex { get; set; }
+
+        public CellSize CellSize { get; set; }
     }
 }

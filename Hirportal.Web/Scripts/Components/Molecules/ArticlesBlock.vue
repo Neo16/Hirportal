@@ -1,14 +1,13 @@
 ﻿<template>
     <div class="article-block">
-        <div class="d-flex article-block-header">
-            <p class="article-block-title">{{block.name}}</p>
-            <div></div>
+        <div v-if="!block.isLeadBlock" class="d-flex article-block-header">
+            <p class="article-block-title">{{block.name}}</p>          
         </div>
         <div class="row article-block-content">
-            <articlecell class="col-sm-6 col-lg-3"
-                         v-for="cell in block.cells"
-                         :key="cell.displayId"
-                         v-bind:article="cell.article">
+            <articlecell v-for="cell in block.cells"
+                         :key="cell.article.id"
+                         v-bind:article="cell.article"
+                         v-bind:cellSize="cell.cellSize">
             </articlecell>
         </div>       
     </div>

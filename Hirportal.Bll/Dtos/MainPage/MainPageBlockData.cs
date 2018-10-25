@@ -9,5 +9,7 @@ namespace Hirportal.Bll.Dtos.MainPage
         public string Name { get; set; }
 
         public List<MainPageCellData> Cells { get; set; }
+
+        public bool IsLeadBlock { get; set; }
     }
 }

@@ -61,18 +61,15 @@ namespace Hirportal.Bll.Services
             var mainPageData = new MainPageData();
 
             var blocks = await context.MainPageBlocks      
-                .Include(e => e.MainPageCells)
-                .ThenInclude(e => e.Article)
+                .ProjectTo<MainPageBlockData>()                
                 .ToListAsync();            
 
             var subBlocks = blocks
-                .Where(e => e.IsLeadBlock == false)
-                .Select(e => Mapper.Map<MainPageBlockData>(e))
+                .Where(e => e.IsLeadBlock == false)            
                 .ToList();
             
             var leadBlock  = blocks
-               .Where(e => e.IsLeadBlock == true)
-               .Select(e => Mapper.Map<MainPageBlockData>(e))
+               .Where(e => e.IsLeadBlock == true)             
                .FirstOrDefault();
             
             mainPageData.Blocks = subBlocks;
