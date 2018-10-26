@@ -10,7 +10,7 @@
                     <label for="password">Jelszó</label>
                     <input v-model="Password" type="password" class="form-control" id="password" placeholder="jelszó">
                 </div>
-                <button type="button" v-on:click="onSubmit" class="btn btn-outline-info float-right login-button">Belépés</button>
+                <button type="button" v-on:click="onSubmit" class="btn btn-outline-info login-button">Belépés</button>
             </form>
         </div>
     </div>

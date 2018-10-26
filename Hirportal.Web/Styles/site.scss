@@ -87,3 +87,23 @@ form {
     margin: 0px;
     padding: .5rem 1rem;
 }
+
+.title-input {
+    font-size: 24px;
+    padding: 23px 10px;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #686868;
+}
+
+.submit-button {
+    width: 150px;
+    margin-top: 5px;
+    align-self: flex-end;
+}

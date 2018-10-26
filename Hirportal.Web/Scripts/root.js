@@ -2,6 +2,7 @@
 import FormExample from './Components/Pages/FormExample.js';
 import LoginPage from './Components/Pages/LoginPage.js';
 import Navbar from './Components/Molecules/Navbar.js';
+import CreateArticlePage from './Components/Pages/CreateArticlePage.js';
 import VueRouter from 'vue-router';
 import { store } from './sore';
 
@@ -13,7 +14,19 @@ import { store } from './sore';
 const routes = [
     { path: '*', component: MainPage },
     { path: '/form', component: FormExample },
-    { path: '/login', component: LoginPage }
+    { path: '/login', component: LoginPage },
+    {
+        path: '/create-article',
+        component: CreateArticlePage,
+        beforeEnter: (to, from, next) => {       
+            if (!store.state.loginInfo.userToken) {
+                return next('/');
+            }
+            else {
+                next();
+            }
+        }
+    }
 ];
 
 // 3. Create the router instance and pass the `routes` option
