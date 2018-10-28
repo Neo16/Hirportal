@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Hirportal.Bll.Dtos.Account
 {
-    public class TokenDto
+    public class LoginResultDto
     {
-        public string AccessToken { get; set; }
+        public string UserToken { get; set; }
+
+        public string UserName { get; set; }
     }
 }
