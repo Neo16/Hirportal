@@ -1,5 +1,6 @@
 ﻿import MainPage from './Components/Pages/MainPage.js';
 import FormExample from './Components/Pages/FormExample.js';
+import ArticleDetails from './Components/Pages/ArticleDetails';
 import Navbar from './Components/Molecules/Navbar.js';
 import VueRouter from 'vue-router';
 
@@ -11,7 +12,8 @@ import VueRouter from 'vue-router';
 // We'll talk about nested routes later.
 const routes = [
     { path: '*', component: MainPage },
-    { path: '/form', component: FormExample }
+    { path: '/form', component: FormExample },
+    { path: '/article/:articleId', component: ArticleDetails}
 ];
 
 // 3. Create the router instance and pass the `routes` option
