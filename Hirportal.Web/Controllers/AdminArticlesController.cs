@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hirportal.Bll.Dtos;
+using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.WebServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +17,14 @@ namespace Hirportal.Web.Controllers
     public class AdminArticlesController : Controller
     {
         private readonly CurrentUserService currentUserService;
+        private readonly IAdminArticleService adminArticleService;
 
-        public AdminArticlesController(CurrentUserService currentUserService)
+        public AdminArticlesController(
+            CurrentUserService currentUserService,
+            IAdminArticleService adminArticleService)
         {
             this.currentUserService = currentUserService;
+            this.adminArticleService = adminArticleService;
         }
 
         [Route("authtest")]
@@ -26,6 +32,15 @@ namespace Hirportal.Web.Controllers
         public async Task<IActionResult> AuthTest()
         {
             var user = await currentUserService.GetCurrentUser();
+            return Ok();
+        }
+
+        [Route("create-article")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> CreateArticle(ArticleEditCreateData article)
+        {
+            //Todo validation 
+            await adminArticleService.CreateArticle(article);
             return Ok();
         }
     }
