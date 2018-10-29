@@ -3,12 +3,14 @@
         <articleform v-bind:article="article"
                      v-on:save-article="postArticle">
         </articleform>
-        <p>{{article.HtmlContent}}</p>
     </div>
 </template>
 <script>
 
-    import articleform from '../Molecules/ArticleForm.js'
+    import articleform from '../Molecules/ArticleForm.js';
+    import { config } from '../../config';
+    import axios from 'axios';
+    import { store } from '../../sore';
 
     export default {
         components: {
@@ -21,7 +23,9 @@
                         Title: '',
                         CoverImageUrl: '',
                         ThumbnailContent: '',
-                        HtmlContent: ''
+                        HtmlContent: '',
+                        PublishDate: '',
+                        ArchiveDate: ''
                     }
                 }
             }
@@ -31,7 +35,18 @@
         },
         methods: {
             postArticle() {
-                alert('todo');
+                axios({
+                    method: 'post',
+                    url: config.apiRoot + '/admin/create-article',
+                    data: this.$data.article,
+                    headers: {
+                        "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                    }                  
+                }).then(res => {
+                    alert('Success');                   
+                }).catch(err => {
+                    alert(`There was an error submitting your form. See details: ${err}`);
+                });
             }
         }
     }

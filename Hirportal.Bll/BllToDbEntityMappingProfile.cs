@@ -37,8 +37,10 @@ namespace Hirportal.Bll
                 .ForMember(e => e.ArchiveDate, f => f.MapFrom(k => k.ArchiveDate))
                 .ForMember(e => e.Column, f => f.MapFrom(k => k.Column))
                 .ForMember(e => e.Tags, f => f.MapFrom(k => k.ArticleTags))
-                .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.Author))
-                .ReverseMap();
+                .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.Author.Id))
+                .ReverseMap()
+                .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.AuthorId))
+                .ForMember(e => e.Author, f => f.Ignore());
 
             CreateMap<ArticleTag, TagData>()
                 .ForMember(e => e.TagId, f => f.MapFrom(k => k.TagId))
@@ -52,8 +54,8 @@ namespace Hirportal.Bll
 
             CreateMap<ApplicationUser, AuthorData>()
                 .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.Id))
-                .ForMember(e => e.Name, f => f.MapFrom(k => k.UserName))
-                .ReverseMap();
+                .ForMember(e => e.Name, f => f.MapFrom(k => k.UserName));
+          
 
             CreateMap<MainPageBlock, MainPageBlockData>()
                 .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))

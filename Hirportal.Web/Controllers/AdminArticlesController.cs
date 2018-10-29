@@ -37,9 +37,10 @@ namespace Hirportal.Web.Controllers
 
         [Route("create-article")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> CreateArticle(ArticleEditCreateData article)
+        public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
         {
             //Todo validation 
+            article.AuthorId = new Guid((await currentUserService.GetCurrentUser()).Id);
             await adminArticleService.CreateArticle(article);
             return Ok();
         }
