@@ -24,6 +24,11 @@
                     3: ['col-lg-8', 'col-sm-12', 'article-cell', 'lead-article-cell'],
                 }
             }
+        },
+        methods: {
+            run() {
+                this.$router.push(Ű)
+            }
         }
     }
 </script>

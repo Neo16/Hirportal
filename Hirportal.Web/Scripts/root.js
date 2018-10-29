@@ -1,10 +1,9 @@
 ﻿import MainPage from './Components/Pages/MainPage.js';
 import FormExample from './Components/Pages/FormExample.js';
-import LoginPage from './Components/Pages/LoginPage.js';
+import ArticleDetails from './Components/Pages/ArticleDetails';
 import Navbar from './Components/Molecules/Navbar.js';
-import CreateArticlePage from './Components/Pages/CreateArticlePage.js';
 import VueRouter from 'vue-router';
-import { store } from './sore';
+
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -14,19 +13,7 @@ import { store } from './sore';
 const routes = [
     { path: '*', component: MainPage },
     { path: '/form', component: FormExample },
-    { path: '/login', component: LoginPage },
-    {
-        path: '/create-article',
-        component: CreateArticlePage,
-        beforeEnter: (to, from, next) => {       
-            if (!store.state.loginInfo.userToken) {
-                return next('/');
-            }
-            else {
-                next();
-            }
-        }
-    }
+    { path: '/article/:articleId', component: ArticleDetails}
 ];
 
 // 3. Create the router instance and pass the `routes` option
@@ -45,12 +32,6 @@ const app = new Vue({
     router,
     components: {
         'navbar': Navbar
-    },
-    mounted() {
-        var info = JSON.parse(localStorage.getItem('fusionLoginInfo'));
-        if (info) {
-            store.setLoginInfo(info.userName, info.userToken);
-        }
     }
 }).$mount('#app');
 
