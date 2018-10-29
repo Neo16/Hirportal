@@ -26,8 +26,8 @@
             }
         },
         methods: {
-            run() {
-                this.$router.push(Ű)
+            asd: function () {
+                this.$router.push('/');
             }
         }
     }
