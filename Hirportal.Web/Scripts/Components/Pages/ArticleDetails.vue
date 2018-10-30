@@ -1,21 +1,32 @@
 ﻿<template>
-
-    <p> Hello There.</p>
+    <div v-if="article" class="article-details">
+        <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
+        <p class="article-title">{{article.title}}</p>
+        <p v-html="article.htmlContent"></p>
+    </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import { config } from '../../config';
+
     export default {
         props: {
-            title: String,
             htmlContent: String
         },
-        mounted() {
+        data: function () {
+            return {
+               article: null
+            }
+        },
+        mounted() {           
             axios
-                .get(config.apiRoot + '/articles/' + this.$router.params.articleId)
+                .get(config.apiRoot + '/articles/' + this.$route.params.articleId)
                 .then(response => {
-                    this.title = response.data.title;
-                    this.htmlContent = response.data.htmlContent;
+                    this.article = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error.response);
                 });
         }
     }

@@ -42,6 +42,7 @@ body {
         font-size: 21px;
         font-weight: 700;
         margin: 0px;
+        cursor: pointer;
     }
 
     .article-title:hover {
@@ -52,6 +53,25 @@ body {
         margin-top: 3px;
         margin-bottom: 0px;
         font-size: 18px;
+    }
+}
+
+.article-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+
+    .article-img {
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    .article-title {
+        font-size: 21px;
+        font-weight: 700;
+        margin: 0px;
     }
 }
 
