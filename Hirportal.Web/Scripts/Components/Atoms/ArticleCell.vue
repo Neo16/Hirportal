@@ -3,7 +3,7 @@
 
         <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
 
-        <p class="article-title">{{article.title}}</p>
+        <p class="article-title"  v-on:click="navigate" >{{article.title}}</p>
         <p class="article-thumbnail-content">{{article.thumbnailContent}} </p>
     </div>
 </template>
@@ -26,8 +26,8 @@
             }
         },
         methods: {
-            asd: function () {
-                this.$router.push('/');
+            navigate: function () {
+                this.$router.push('/article/' + this.article.id)
             }
         }
     }

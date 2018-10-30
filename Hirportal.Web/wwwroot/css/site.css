@@ -28,6 +28,8 @@ body {
     font-size: 21px;
     font-weight: 700;
     margin: 0px; }
+  .article-cell .article-title:hover {
+    color: #CDBF7C; }
   .article-cell .article-thumbnail-content {
     margin-top: 3px;
     margin-bottom: 0px;

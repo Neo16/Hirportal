@@ -1,17 +1,22 @@
 ﻿<template>
 
-    <!--<img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
-
-    <p class="article-title">{{article.title}}</p>
-    <p class="article-thumbnail-content">{{article.}} </p>-->
+    <p> Hello There.</p>
 </template>
 
 <script>
-    import articlecell from '../Atoms/ArticleCell'
+    import axios from 'axios';
     export default {
-        components: {
-            articlecell
+        props: {
+            title: String,
+            htmlContent: String
         },
-        props: ['article']     
+        mounted() {
+            axios
+                .get(config.apiRoot + '/articles/' + this.$router.params.articleId)
+                .then(response => {
+                    this.title = response.data.title;
+                    this.htmlContent = response.data.htmlContent;
+                });
+        }
     }
 </script>
