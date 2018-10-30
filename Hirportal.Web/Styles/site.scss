@@ -36,6 +36,7 @@ body {
     .article-img {
         vertical-align: middle;
         width: 100%;
+        cursor: pointer;
     }
 
     .article-title {
@@ -69,7 +70,7 @@ body {
     }
 
     .article-title {
-        font-size: 21px;
+        font-size: 32px;
         font-weight: 700;
         margin: 0px;
     }

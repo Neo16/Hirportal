@@ -1,7 +1,7 @@
 ﻿<template>
     <div v-bind:class="cellClasses[cellSize]">
 
-        <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
+        <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" v-on:click="navigate" />
 
         <p class="article-title"  v-on:click="navigate" >{{article.title}}</p>
         <p class="article-thumbnail-content">{{article.thumbnailContent}} </p>

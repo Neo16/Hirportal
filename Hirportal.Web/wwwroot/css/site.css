@@ -23,7 +23,8 @@ body {
   word-wrap: break-word; }
   .article-cell .article-img {
     vertical-align: middle;
-    width: 100%; }
+    width: 100%;
+    cursor: pointer; }
   .article-cell .article-title {
     font-size: 21px;
     font-weight: 700;
@@ -46,7 +47,7 @@ body {
     vertical-align: middle;
     width: 100%; }
   .article-details .article-title {
-    font-size: 21px;
+    font-size: 32px;
     font-weight: 700;
     margin: 0px; }
 
