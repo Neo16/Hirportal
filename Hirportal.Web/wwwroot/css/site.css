@@ -11,7 +11,10 @@ body {
       font-weight: 700;
       margin-bottom: 0;
       text-transform: uppercase;
-      color: #CDBF7C; }
+      color: #CDBF7C;
+      cursor: pointer; }
+    .article-block .article-block-header .article-block-title:hover {
+      color: navajowhite; }
   .article-block .article-block-content {
     padding-top: 9px; }
 

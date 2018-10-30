@@ -1,7 +1,7 @@
 ﻿<template>
     <div class="article-block">
         <div v-if="!block.isLeadBlock" class="d-flex article-block-header">
-            <p class="article-block-title">{{block.name}}</p>          
+            <p class="article-block-title" v-on:click="navigate">{{block.name}}</p>          
         </div>
         <div class="row article-block-content">
             <articlecell v-for="cell in block.cells"
@@ -19,6 +19,11 @@
         components: {
             articlecell
         },
-        props: ['block']
+        props: ['block'],
+        methods: {
+            navigate: function () {
+                this.$router.push('/column/' + this.block.name)
+            }
+        }
     }
 </script>

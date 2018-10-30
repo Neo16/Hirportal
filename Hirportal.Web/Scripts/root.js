@@ -5,6 +5,7 @@ import Navbar from './Components/Molecules/Navbar.js';
 import VueRouter from 'vue-router';
 import CreateArticlePage from './Components/Pages/CreateArticlePage.js';
 import LoginPage from './Components/Pages/LoginPage.js';
+import ColumnPage from './Components/Pages/ColumnPage.js';
 import { store } from './sore.js';
 
 
@@ -17,6 +18,7 @@ const routes = [
     { path: '*', component: MainPage },
     { path: '/form', component: FormExample },
     { path: '/article/:articleId', component: ArticleDetails },
+    { path: '/column/:columnName', component: ColumnPage},
     { path: '/login', component: LoginPage },
     {
         path: '/create-article',

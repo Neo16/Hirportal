@@ -11,9 +11,6 @@
     import { config } from '../../config';
 
     export default {
-        props: {
-            htmlContent: String
-        },
         data: function () {
             return {
                article: null
