@@ -69,7 +69,7 @@ namespace Hirportal.Dal
                     ArticleTags = tags.GetRange(0, r.Next(0, tags.Count - 1))
                                   .Select(t => new ArticleTag() { Tag = t }).ToList(),
                     Author = context.Users.First(),
-                    Column = columns.ElementAt(r.Next(0, columns.Count - 1)),
+                    Column = columns.ElementAt(r.Next(0, columns.Count)),
                     HtmlContent = LoremHelper.Text,
                     PublishDate = DateTime.Now,
                     Title = "Példa Cikk " + e.ToString(),
