@@ -8,6 +8,9 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/">Főoldal</router-link>
                 </li>
+                <li if="columns" v-for="column in columns">
+                    <router-link  class="nav-link" :to="'/column/' + column.name">{{column.name}}</router-link>
+                </li>
                 <li v-if="loginInfo.userName" class="nav-item">
                     <router-link class="nav-link" to="/create-article">Új cikk</router-link>
                 </li>
@@ -25,6 +28,8 @@
 <script>
     import articlecell from '../Atoms/ArticleCell';
     import { store } from '../../sore';
+    import axios from 'axios';
+    import { config } from '../../config';
     export default {
         components: {
             articlecell       
@@ -39,8 +44,19 @@
         },
         data: function () {
             return {
-                loginInfo: store.state.loginInfo
+                loginInfo: store.state.loginInfo,
+                columns : null
             };
+        },
+        mounted() {
+            axios
+                .get(config.apiRoot + '/columns')
+                .then(response => {
+                    this.columns = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                });
         }
     }
 </script>

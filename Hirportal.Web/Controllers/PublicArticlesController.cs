@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.ServiceInterfaces;
+using Hirportal.Bll.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hirportal.Web.Controllers
@@ -12,10 +13,12 @@ namespace Hirportal.Web.Controllers
     public class PublicArticlesController : ControllerBase
     {
         public readonly IPublicArticleService publicArticleService;
+        public readonly IColumnService columnService;
 
-        public PublicArticlesController(IPublicArticleService publicArticleService)
+        public PublicArticlesController(IPublicArticleService publicArticleService, IColumnService columnService)
         {
             this.publicArticleService = publicArticleService;
+            this.columnService = columnService;
         }
 
         [HttpGet("articles/{id}")]
@@ -49,6 +52,16 @@ namespace Hirportal.Web.Controllers
         {
             IEnumerable<ArticleHeaderData> article = await publicArticleService.GetByColumn(columnName);
             return Ok(article);
+        }
+
+        /// <summary>
+        /// Az összes rovat nevét adja vissza
+        /// </summary>   
+        [HttpGet("columns")]
+        public async Task<ActionResult> ColumnNames()
+        {
+            IEnumerable<ColumnData> columnNames = await columnService.GetAllColumnNames();
+            return Ok(columnNames);
         }
 
         [HttpGet("mainpage")]
