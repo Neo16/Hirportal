@@ -27,7 +27,7 @@
 
 <script>
     import articlecell from '../Atoms/ArticleCell';
-    import { store } from '../../sore';
+    import { store } from '../../store';
     import axios from 'axios';
     import { config } from '../../config';
     export default {
@@ -48,7 +48,9 @@
                 columns : null
             };
         },
-        mounted() {
+        mounted() {    
+            console.log('navbar mounted data:' + this.loginInfo.userName);
+
             axios
                 .get(config.apiRoot + '/columns')
                 .then(response => {

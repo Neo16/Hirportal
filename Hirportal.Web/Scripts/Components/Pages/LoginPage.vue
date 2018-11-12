@@ -18,7 +18,7 @@
 
 <script>
     import { config } from '../../config';
-    import { store } from '../../sore';
+    import { store } from '../../store';
     import axios from 'axios';
 
     export default {

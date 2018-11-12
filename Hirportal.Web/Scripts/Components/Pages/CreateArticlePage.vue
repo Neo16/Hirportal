@@ -10,7 +10,7 @@
     import articleform from '../Molecules/ArticleForm.js';
     import { config } from '../../config';
     import axios from 'axios';
-    import { store } from '../../sore';   
+    import { store } from '../../store';   
 
     export default {
         components: {
@@ -25,7 +25,10 @@
                         ThumbnailContent: '',
                         HtmlContent: '',
                         PublishDate: '',
-                        ArchiveDate: ''
+                        ArchiveDate: '',
+                        Column: {
+                            Id: ''
+                        }
                     }
                 }
             }

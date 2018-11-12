@@ -48,7 +48,7 @@ namespace Hirportal.Bll
                 .ReverseMap();
 
             CreateMap<Column, ColumnData>()
-                .ForMember(e => e.ColumnId, f => f.MapFrom(k => k.Id))
+                .ForMember(e => e.Id, f => f.MapFrom(k => k.Id))
                 .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))
                 .ReverseMap();
 

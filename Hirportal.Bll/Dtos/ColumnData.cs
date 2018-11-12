@@ -8,6 +8,6 @@ namespace Hirportal.Bll.Dtos
     {
         public string Name { get; set; }
 
-        public Guid ColumnId { get; set; }
+        public Guid Id { get; set; }
     }
 }

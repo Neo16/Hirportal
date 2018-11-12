@@ -6,7 +6,7 @@ import VueRouter from 'vue-router';
 import CreateArticlePage from './Components/Pages/CreateArticlePage.js';
 import LoginPage from './Components/Pages/LoginPage.js';
 import ColumnPage from './Components/Pages/ColumnPage.js';
-import { store } from './sore.js';
+import { store } from './store.js';
 import Datetime from 'vue-datetime';
 
 
@@ -53,6 +53,15 @@ const app = new Vue({
     router,
     components: {
         'navbar': Navbar
+    }, 
+    mounted() {
+        var loginInfoJSON = localStorage.getItem('fusionLoginInfo');
+        if (loginInfoJSON) {
+            var loginInfoFromLocalStorage = JSON.parse(loginInfoJSON);
+            store.setLoginInfo(
+                loginInfoFromLocalStorage.userName,
+                loginInfoFromLocalStorage.userToken);
+        }       
     }
 }).$mount('#app');
 
