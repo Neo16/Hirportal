@@ -28,7 +28,8 @@
                         ArchiveDate: '',
                         Column: {
                             Id: ''
-                        }
+                        },
+                        Tags: []
                     }
                 }
             }

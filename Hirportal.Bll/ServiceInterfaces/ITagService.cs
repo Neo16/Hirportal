@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Hirportal.Bll.ServiceInterfaces
 {
-    public interface IColumnService
+    public interface ITagService
     {
-        Task<IEnumerable<ColumnData>> Get();
+        Task<IEnumerable<TagData>> Get();
 
-        Task Add(ColumnData column);
+        Task Add(TagData tag);
 
-        Task Update(ColumnData column);
+        Task Update(TagData tag);
 
         Task Delete(Guid id);
     }

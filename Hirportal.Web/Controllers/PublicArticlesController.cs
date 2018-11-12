@@ -52,17 +52,7 @@ namespace Hirportal.Web.Controllers
         {
             IEnumerable<ArticleHeaderData> article = await publicArticleService.GetByColumn(columnName);
             return Ok(article);
-        }
-
-        /// <summary>
-        /// Az összes rovat nevét adja vissza
-        /// </summary>   
-        [HttpGet("columns")]
-        public async Task<ActionResult> ColumnNames()
-        {
-            IEnumerable<ColumnData> columnNames = await columnService.GetAllColumnNames();
-            return Ok(columnNames);
-        }
+        }       
 
         [HttpGet("mainpage")]
         public async Task<ActionResult> MainPage()

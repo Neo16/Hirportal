@@ -47,6 +47,11 @@ namespace Hirportal.Bll
                 .ForMember(e => e.Name, f => f.MapFrom(k => k.Tag.Value))
                 .ReverseMap();
 
+            CreateMap<Tag, TagData>()
+               .ForMember(e => e.TagId, f => f.MapFrom(k => k.Id))
+               .ForMember(e => e.Name, f => f.MapFrom(k => k.Value))
+               .ReverseMap();
+
             CreateMap<Column, ColumnData>()
                 .ForMember(e => e.Id, f => f.MapFrom(k => k.Id))
                 .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))

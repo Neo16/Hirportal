@@ -50,7 +50,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\lib\skrolltop\" />
   </ItemGroup>
 
 </Project>

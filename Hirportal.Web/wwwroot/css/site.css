@@ -92,3 +92,12 @@ form {
   width: 150px;
   margin-top: 5px;
   align-self: flex-end; }
+
+.v-select .dropdown-toggle {
+  padding: 0.2rem 0.25rem 0.35rem 0.2rem !important; }
+
+.v-select ul.dropdown-menu {
+  margin-bottom: 20px !important; }
+
+.v-select .dropdown-toggle::after {
+  display: none; }

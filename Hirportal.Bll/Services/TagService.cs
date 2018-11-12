@@ -5,19 +5,18 @@ using Hirportal.Dal;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hirportal.Bll.Services
 {
-    public class ColumnService : ServiceBase, IColumnService
+    public class TagService: ServiceBase, ITagService
     {
-        public ColumnService(ApplicationDbContext context) : base(context)
+        public TagService(ApplicationDbContext context) : base(context)
         {
         }
 
-        public Task Add(ColumnData column)
+        public Task Add(TagData tag)
         {
             throw new NotImplementedException();
         }
@@ -27,14 +26,14 @@ namespace Hirportal.Bll.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<ColumnData>> Get()
+        public async Task<IEnumerable<TagData>> Get()
         {
-            return await context.Columns
-                .ProjectTo<ColumnData>()
-                .ToListAsync();
+            return await context.Tags
+               .ProjectTo<TagData>()
+               .ToListAsync();
         }
 
-        public Task Update(ColumnData column)
+        public Task Update(TagData tag)
         {
             throw new NotImplementedException();
         }

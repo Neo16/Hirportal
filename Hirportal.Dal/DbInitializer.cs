@@ -50,7 +50,7 @@ namespace Hirportal.Dal
                 new Tag() { Value = "Kosárlabda" },
                 new Tag() { Value = "Mozi" },
                 new Tag() { Value = "Kiss Gábor" },
-            };
+            };           
 
             var columns = new List<Column>()
             {
