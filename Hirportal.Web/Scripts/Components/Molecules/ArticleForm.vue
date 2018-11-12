@@ -5,11 +5,11 @@
         </div>
         <div class="form-group">
             <label>Publikálási idő</label>
-            <input v-model="article.PublishDate" type="date" class="form-control" placeholder="Publikálási idő">
+            <datetime v-model="article.PublishDate" type="datetime" input-class="form-control"></datetime>          
         </div>
         <div class="form-group">
             <label>Archiválási idő</label>
-            <input v-model="article.ArchiveDate" type="date" class="form-control" placeholder="Archiválási idő">
+            <datetime v-model="article.ArchiveDate" type="datetime" input-class="form-control"></datetime>         
         </div>
         <div class="form-group">
             <label>Kivonat</label>

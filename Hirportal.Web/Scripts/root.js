@@ -7,6 +7,7 @@ import CreateArticlePage from './Components/Pages/CreateArticlePage.js';
 import LoginPage from './Components/Pages/LoginPage.js';
 import ColumnPage from './Components/Pages/ColumnPage.js';
 import { store } from './sore.js';
+import Datetime from 'vue-datetime';
 
 
 // 2. Define some routes
@@ -45,6 +46,8 @@ const router = new VueRouter({
 // 4. Create and mount the root instance.
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
+
+Vue.use(Datetime);
 
 const app = new Vue({
     router,

@@ -31,7 +31,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "luxon": "^1.6.2",
+    "vue-datetime": "^1.0.0-beta.8",
     "vue-router": "^3.0.1",
-    "vue2-editor": "^2.6.6"
+    "vue2-editor": "^2.6.6",
+    "weekstart": "^1.0.0"
   }
 }
