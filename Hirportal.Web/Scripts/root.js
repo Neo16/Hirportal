@@ -8,7 +8,8 @@ import LoginPage from './Components/Pages/LoginPage.js';
 import ColumnPage from './Components/Pages/ColumnPage.js';
 import { store } from './store.js';
 import Datetime from 'vue-datetime';
-
+import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
+import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -21,19 +22,19 @@ const routes = [
     { path: '/article/:articleId', component: ArticleDetails },
     { path: '/column/:columnName', component: ColumnPage},
     { path: '/login', component: LoginPage },
-    {
-        path: '/create-article',
-        component: CreateArticlePage,
-        beforeEnter: (to, from, next) => {
-            if (!store.state.loginInfo.userToken) {
-                return next('/');
-            }
-            else {
-                next();
-            }
-        }
-    }
+    { path: '/admin/create-article', component: CreateArticlePage, beforeEnter: adminFilter },
+    { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
+    { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter }
 ];
+
+function adminFilter(to, from, next) {
+    if (!store.state.loginInfo.userToken) {
+        return next('/');
+    }
+    else {
+        next();
+    }
+}
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's

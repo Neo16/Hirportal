@@ -1,28 +1,32 @@
 ﻿<template>   
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/">Főoldal</router-link>
-                </li>
-                <li if="columns" v-for="column in columns">
-                    <router-link  class="nav-link" :to="'/column/' + column.name">{{column.name}}</router-link>
-                </li>
-                <li v-if="loginInfo.userName" class="nav-item">
-                    <router-link class="nav-link" to="/create-article">Új cikk</router-link>
-                </li>
-            </ul>         
-            <div v-if="loginInfo.userName" class="d-flex">
-                <p class="login-info"> belépve: {{loginInfo.userName}}</p>
-                <button v-on:click="logout" class="btn btn-sm btn-outline-dark">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </div>
-        </div>     
-    </nav>
+    <div>
+     
+        <b-navbar type="light" toggleable="md" variant="light">
+
+            <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>          
+
+            <b-collapse is-nav id="nav_collapse">
+                <b-navbar-nav>
+                    <b-nav-item href="/">Főoldal</b-nav-item>
+                    <b-nav-item if="columns" v-for="column in columns" :to="'/column/' + column.name">{{column.name}}</b-nav-item>
+                </b-navbar-nav>
+
+                <!-- Right aligned nav items -->
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item-dropdown v-if="loginInfo.userName" text="Admin opciók" right>
+                        <b-dropdown-item :to="{path: '/admin/articles'}">Cikkek</b-dropdown-item>
+                        <b-dropdown-item v-bind:to="{path: '/admin/create-article'}">Új cikk</b-dropdown-item>
+                        <b-dropdown-item v-bind:to="{path: '/admin/columns'}">Rovatok</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                    <div v-if="loginInfo.userName" class="d-flex">
+                        <button v-on:click="logout" class="btn btn-sm btn-outline-dark">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+    </div>  
 </template>
 
 <script>
@@ -30,9 +34,10 @@
     import { store } from '../../store';
     import axios from 'axios';
     import { config } from '../../config';
+
     export default {
         components: {
-            articlecell       
+            articlecell            
         },
         props: ['cells'],
         methods: {
