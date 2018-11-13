@@ -23,15 +23,10 @@ namespace Hirportal.Bll.Services
         {
             var query = context.Articles
                 .AsQueryable();
-
-            if (filter.ColumnName != null)
-            {
-                query = query.Where(e => e.Column.Name.ToLower() == filter.ColumnName.ToLower());
-            }
+            
             if (filter.Tags != null && filter.Tags.Count > 0)
             {
                 query = query.Where(e => e.ArticleTags.Any(f => filter.Tags.Contains(f.Tag.Value.ToLower())));
-
             }
  
             return await query

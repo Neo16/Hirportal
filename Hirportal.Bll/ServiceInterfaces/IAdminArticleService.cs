@@ -8,6 +8,12 @@ namespace Hirportal.Bll.ServiceInterfaces
 {
     public interface IAdminArticleService
     {
-        Task CreateArticle(ArticleEditCreateData article);
+        Task<IEnumerable<ArticleAdminHeaderData>> Get();
+
+        Task Create(ArticleEditCreateData article);    
+
+        Task Update(ArticleEditCreateData column);
+
+        Task Delete(Guid id);       
     }
 }

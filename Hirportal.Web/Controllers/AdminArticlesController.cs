@@ -35,13 +35,21 @@ namespace Hirportal.Web.Controllers
             return Ok();
         }
 
+        [Route("articles")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetArticleList()
+        {
+            IEnumerable<ArticleAdminHeaderData> articles = await adminArticleService.Get();
+            return Ok(articles);
+        }
+
         [Route("create-article")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
         {
             //Todo validation 
             article.AuthorId = new Guid((await currentUserService.GetCurrentUser()).Id);
-            await adminArticleService.CreateArticle(article);
+            await adminArticleService.Create(article);
             return Ok();
         }
     }

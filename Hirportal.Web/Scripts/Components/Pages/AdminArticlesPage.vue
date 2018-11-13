@@ -1,8 +1,8 @@
 ﻿<template>
     <div>
-        <h2>Cikkek (hamarosan...)</h2>
+        <h2>Cikkek</h2>
         <div id="people">
-            <v-client-table :data="tableData" :columns="columns" :options="options">
+            <v-client-table v-if="tableData" :data="tableData" :columns="columns" :options="options">
             </v-client-table>
         </div>
     </div>
@@ -16,31 +16,41 @@
     export default {
         data: function () {
             return {
-                columns: ['id', 'name', 'age'],
-                tableData: [
-                    { id: 1, name: "John", age: "20" },
-                    { id: 2, name: "Jane", age: "24" },
-                    { id: 3, name: "Susan", age: "16" },
-                    { id: 4, name: "Chris", age: "55" },
-                    { id: 5, name: "Dan", age: "40" }
-                ],
+                columns: ['title', 'author.name', 'publishDate', 'archiveDate', 'column.name'],
+                tableData: null,
                 theme: 'bootstrap4',
-                options: {      
+                options: {
                     filterByColumn: true,
                     headings: {
-                        id: 'Id',
-                        name: 'Név',
-                        age: 'Kor'
+                        title: 'cím',
+                        author: 'szerző',
+                        publishDate: 'publikálási idő',
+                        archiveDate: 'archiválási idő',
+                        column: 'rovat',
+                        'author.name': 'szerző',
+                        'column.name': 'rovat'
                     },
-                    sortable: ['name', 'age'],
-                    filterable: ['name', 'age'],
+                    sortable: ['title', 'author', 'publishDate', 'archiveDate', 'column.name', 'author.name'],
+                    filterable: ['title', 'author', 'publishDate', 'archiveDate', 'column.name', 'author.name'],                  
                     texts: {
                         filter: '',
                         filterBy: 'keresés {column} alapján',
                         count: ''
-                    },
+                    }   
                 }
             };
         },
+        mounted() {
+            axios({
+                method: 'GET',
+                url: config.apiRoot + '/admin/articles',
+                headers: {
+                    "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                }
+            })
+            .then(response => {
+                this.tableData = response.data;
+            })
+        }
     }
 </script>
