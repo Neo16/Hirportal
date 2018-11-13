@@ -10,6 +10,7 @@ import { store } from './store.js';
 import Datetime from 'vue-datetime';
 import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
+import { ClientTable } from 'vue-tables-2';
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -49,6 +50,7 @@ const router = new VueRouter({
 // whole app router-aware.
 
 Vue.use(Datetime);
+Vue.use(ClientTable);
 
 const app = new Vue({
     router,

@@ -11,6 +11,8 @@
     <None Remove="Scripts\Components\Molecules\ArticleForm.js" />
     <None Remove="Scripts\Components\Molecules\ArticlesBlock.js" />
     <None Remove="Scripts\Components\Molecules\Navbar.js" />
+    <None Remove="Scripts\Components\Pages\AdminArticlesPage.js" />
+    <None Remove="Scripts\Components\Pages\AdminColumnsPage.js" />
     <None Remove="Scripts\Components\Pages\ArticleDetails.js" />
     <None Remove="Scripts\Components\Pages\ColumnPage.js" />
     <None Remove="Scripts\Components\Pages\CreateArticlePage.js" />
