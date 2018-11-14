@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.WebServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hirportal.Web.Controllers
 {
     [Route("api/admin")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AdminArticlesController : Controller
     {
         private readonly CurrentUserService currentUserService;
@@ -27,23 +26,16 @@ namespace Hirportal.Web.Controllers
             this.adminArticleService = adminArticleService;
         }
 
-        [Route("authtest")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> AuthTest()
-        {
-            var user = await currentUserService.GetCurrentUser();
-            return Ok();
-        }
-
-        [Route("articles")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet]
+        [Route("articles")]      
         public async Task<IActionResult> GetArticleList()
         {
             IEnumerable<ArticleAdminHeaderData> articles = await adminArticleService.Get();
             return Ok(articles);
         }
 
-        [Route("create-article")]
+        [HttpPost]
+        [Route("create-article")]        
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
         {
@@ -51,6 +43,14 @@ namespace Hirportal.Web.Controllers
             article.AuthorId = new Guid((await currentUserService.GetCurrentUser()).Id);
             await adminArticleService.Create(article);
             return Ok();
+        }
+
+        [HttpDelete]
+        [Route("delete-article")]    
+        public async Task<IActionResult> DeleteArticle(Guid articleId)
+        {           
+            await adminArticleService.Delete(articleId);
+            return Ok(articleId);
         }
     }
 }
