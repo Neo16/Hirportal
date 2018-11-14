@@ -48,9 +48,21 @@ namespace Hirportal.Web.Controllers
         public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
         {
             //Todo validation 
-            article.AuthorId = new Guid((await currentUserService.GetCurrentUser()).Id);
+            article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
             await adminArticleService.Create(article);
             return Ok();
+        }
+
+        [HttpGet("articles/{id}")]
+        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        public async Task<ActionResult> Get(Guid id)
+        {
+            ArticleEditCreateData article = await adminArticleService.GetByIdAsync(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            return Ok(article);
         }
     }
 }

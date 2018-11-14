@@ -10,6 +10,7 @@ import { store } from './store.js';
 import Datetime from 'vue-datetime';
 import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
+import AdminEditArticlePage from './Components/Pages/AdminEditArticlePage.js';
 import { ClientTable } from 'vue-tables-2';
 import VueMoment from 'vue-moment';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -25,7 +26,8 @@ const routes = [
     { path: '/login', component: LoginPage },
     { path: '/admin/create-article', component: CreateArticlePage, beforeEnter: adminFilter },
     { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
-    { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter }
+    { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter },
+    { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }
 ];
 
 function adminFilter(to, from, next) {

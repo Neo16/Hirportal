@@ -13,8 +13,10 @@
     <None Remove="Scripts\Components\Molecules\Navbar.js" />
     <None Remove="Scripts\Components\Pages\AdminArticlesPage.js" />
     <None Remove="Scripts\Components\Pages\AdminColumnsPage.js" />
+    <None Remove="Scripts\Components\Pages\AdminEditArticlePage.js" />
     <None Remove="Scripts\Components\Pages\ArticleDetails.js" />
     <None Remove="Scripts\Components\Pages\ColumnPage.js" />
+    <None Remove="Scripts\Components\Pages\CreateArticlePage - Copy.vue" />
     <None Remove="Scripts\Components\Pages\CreateArticlePage.js" />
     <None Remove="Scripts\Components\Pages\FormExample.js" />
     <None Remove="Scripts\Components\Pages\Home.js" />
