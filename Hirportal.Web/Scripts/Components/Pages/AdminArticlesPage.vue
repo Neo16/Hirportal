@@ -6,10 +6,12 @@
                 <a slot="title" slot-scope="props" :href="'/article/' + props.row.id">{{props.row.title}}</a>
                 <p slot="publishDate" slot-scope="props">{{props.row.publishDate | moment("YYYY.MM.DD hh:mm")}}</p>
                 <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
-                <template slot="id" slot-scope="props">
-                    <a :href="'/admin/edit-article/' + props.row.id">
-                        <font-awesome-icon icon="pencil-alt" />
-                    </a>
+                <template slot="id" slot-scope="props">                  
+                    <router-link :to="'/admin/edit-article/' + props.row.id">
+                        <a>
+                            <font-awesome-icon icon="pencil-alt" />
+                        </a>
+                    </router-link>
                     <a href="#">
                         <font-awesome-icon icon="trash" />
                     </a>
