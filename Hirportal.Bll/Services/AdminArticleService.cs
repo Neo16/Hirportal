@@ -7,6 +7,7 @@ using Hirportal.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hirportal.Bll.Services
@@ -42,6 +43,14 @@ namespace Hirportal.Bll.Services
             return await context.Articles
               .ProjectTo<ArticleAdminHeaderData>()
               .ToListAsync();
+        }
+
+        public async Task<ArticleEditCreateData> GetByIdAsync(Guid id)
+        {
+            return await context.Articles
+                .Where(e => e.Id == id)
+                .ProjectTo<ArticleEditCreateData>()
+                .FirstOrDefaultAsync();
         }
 
         public async Task Update(Guid id, ArticleEditCreateData article)
