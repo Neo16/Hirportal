@@ -7,7 +7,6 @@ using Hirportal.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Hirportal.Bll.Services
@@ -26,9 +25,16 @@ namespace Hirportal.Bll.Services
             await context.SaveChangesAsync();
         }
 
-        public Task Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var articleEntity = await context.Articles
+             .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (articleEntity != null)
+            {
+                context.Articles.Remove(articleEntity);
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<ArticleAdminHeaderData>> Get()
@@ -38,9 +44,21 @@ namespace Hirportal.Bll.Services
               .ToListAsync();
         }
 
-        public Task Update(ArticleEditCreateData column)
+        public async Task Update(Guid id, ArticleEditCreateData article)
         {
-            throw new NotImplementedException();
+            var articleEntity = await context.Articles
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (articleEntity != null)
+            {
+                var updatedArticleEntity = Mapper.Map<Article>(article);
+                context.Entry(articleEntity).CurrentValues.SetValues(updatedArticleEntity);
+                await context.SaveChangesAsync();
+            }
+            else
+            {
+                //todo hibakezelés 
+            }
         }
     }
 }

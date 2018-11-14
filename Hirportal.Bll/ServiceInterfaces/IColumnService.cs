@@ -11,7 +11,7 @@ namespace Hirportal.Bll.ServiceInterfaces
 
         Task Add(ColumnData column);
 
-        Task Update(ColumnData column);
+        Task Update(Guid id, ColumnData column);
 
         Task Delete(Guid id);
     }

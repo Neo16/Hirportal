@@ -26,6 +26,6 @@ namespace Hirportal.Model
         public ICollection<ArticleTag> ArticleTags { get; set; }
       
         public ApplicationUser Author { get; set; }
-        public Guid AuthorId { get; set; }
+        public string AuthorId { get; set; }
     }
 }

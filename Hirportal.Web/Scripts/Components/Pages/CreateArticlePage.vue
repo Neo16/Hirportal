@@ -47,7 +47,7 @@
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                     }                  
                 }).then(res => {
-                    alert('Success');                   
+                    this.$router.push('/admin/articles');
                 }).catch(err => {
                     alert(`There was an error submitting your form. See details: ${err}`);
                 });

@@ -34,7 +34,7 @@ namespace Hirportal.Bll.Services
                 .ToListAsync();
         }
 
-        public Task Update(ColumnData column)
+        public Task Update(Guid id, ColumnData column)
         {
             throw new NotImplementedException();
         }

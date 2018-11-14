@@ -12,7 +12,7 @@ namespace Hirportal.Bll.ServiceInterfaces
 
         Task Create(ArticleEditCreateData article);    
 
-        Task Update(ArticleEditCreateData column);
+        Task Update(Guid id, ArticleEditCreateData article);
 
         Task Delete(Guid id);       
     }
