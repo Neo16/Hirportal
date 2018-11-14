@@ -2,22 +2,28 @@
     <div>
         <h2>Cikkek</h2>
         <div id="people">
-            <v-client-table v-if="tableData" :data="tableData" :columns="columns" :options="options">
+            <v-client-table ref="articlesTable" v-if="tableData" :data="tableData" :columns="columns" :options="options">
                 <a slot="title" slot-scope="props" :href="'/article/' + props.row.id">{{props.row.title}}</a>
                 <p slot="publishDate" slot-scope="props">{{props.row.publishDate | moment("YYYY.MM.DD hh:mm")}}</p>
                 <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
-                <template slot="id" slot-scope="props">                  
-                    <router-link :to="'/admin/edit-article/' + props.row.id">
-                        <a>
-                            <font-awesome-icon icon="pencil-alt" />
-                        </a>
-                    </router-link>
-                    <a href="#">
-                        <font-awesome-icon icon="trash" />
-                    </a>
+                <template slot="id" slot-scope="props">
+                    <div class="d-flex">
+                        <router-link :to="'/admin/edit-article/' + props.row.id">
+                            <a>
+                                <font-awesome-icon icon="pencil-alt" />
+                            </a>
+                        </router-link>
+                        <div class="icon-wrapper pointer">
+                            <font-awesome-icon @click="tryDeleteArticle(props.row.id)" icon="trash" />
+                        </div>
+                    </div>
                 </template>
             </v-client-table>
         </div>
+        <confirm-modal v-if="showDeleteConfirm" @close="deleteArticle(articleToDeleteId)">
+            <h3 slot="header">Megerősítés</h3>
+            <p slot="body">Biztosan törölni akarja a cikket?</p>
+        </confirm-modal>
     </div>
 </template>
 <script>
@@ -25,10 +31,16 @@
     import { config } from '../../config';
     import axios from 'axios';
     import { store } from '../../store';
+    import ConfirmModal from '../Molecules/ConfirmModal'
 
     export default {
+        components: {
+            ConfirmModal
+        },
         data: function () {
             return {
+                articleToDeleteId: null,
+                showDeleteConfirm: false,
                 columns: ['title', 'author.name', 'publishDate', 'archiveDate', 'column.name', 'id' ],
                 tableData: null,
                 theme: 'bootstrap4',
@@ -54,17 +66,46 @@
                 }
             };
         },
+        methods: {
+            tryDeleteArticle: function(id) {
+                this.showDeleteConfirm = true;
+                this.articleToDeleteId = id;
+
+            },
+            deleteArticle: function (id) {
+                console.log('deletable id:' + id);
+                this.showDeleteConfirm = false;
+                axios({
+                    method: 'delete',
+                    data: {
+                        articleId: id
+                    },
+                    url: config.apiRoot + `/admin/delete-article?articleId=${id}`,
+                    headers: {
+                        "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                    }
+                })
+                .then(response => {
+                    var index = this.tableData.map(x => {
+                        return x.id;
+                    }).indexOf(response.data);
+
+                    console.log('deletable index' + index);
+                    Vue.delete(this.tableData, index);
+                })
+            }           
+        },
         mounted() {
             axios({
                 method: 'GET',
-                url: config.apiRoot + '/admin/articles',
+                url: config.apiRoot + '/admin/articles' ,
                 headers: {
                     "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                 }
             })
-                .then(response => {
-                    this.tableData = response.data;
-                })
+            .then(response => {
+                this.tableData = response.data;
+            })
         }
     }
 </script>

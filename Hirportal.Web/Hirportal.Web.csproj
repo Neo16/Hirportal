@@ -10,6 +10,7 @@
     <None Remove="Scripts\Components\Layout.js" />
     <None Remove="Scripts\Components\Molecules\ArticleForm.js" />
     <None Remove="Scripts\Components\Molecules\ArticlesBlock.js" />
+    <None Remove="Scripts\Components\Molecules\ConfirmModal.js" />
     <None Remove="Scripts\Components\Molecules\Navbar.js" />
     <None Remove="Scripts\Components\Pages\AdminArticlesPage.js" />
     <None Remove="Scripts\Components\Pages\AdminColumnsPage.js" />
