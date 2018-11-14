@@ -30,9 +30,13 @@
     "webpack-stream": "^5.1.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "@fortawesome/vue-fontawesome": "^0.1.2",
     "axios": "^0.18.0",
     "luxon": "^1.6.2",
     "vue-datetime": "^1.0.0-beta.8",
+    "vue-moment": "^4.0.0",
     "vue-router": "^3.0.1",
     "vue-select": "^2.5.1",
     "vue-tables-2": "^1.4.70",

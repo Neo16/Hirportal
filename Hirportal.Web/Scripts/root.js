@@ -11,12 +11,12 @@ import Datetime from 'vue-datetime';
 import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
 import { ClientTable } from 'vue-tables-2';
+import VueMoment from 'vue-moment';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// `Vue.extend()`, or just a component options object.
-// We'll talk about nested routes later.
+//Define routes
 const routes = [
     { path: '*', component: MainPage },
     { path: '/form', component: FormExample },
@@ -37,21 +37,27 @@ function adminFilter(to, from, next) {
     }
 }
 
-// 3. Create the router instance and pass the `routes` option
-// You can pass in additional options here, but let's
-// keep it simple for now.
+//Create the router instance and pass the `routes` option
 const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
 });
 
-// 4. Create and mount the root instance.
-// Make sure to inject the router with the router option to make the
-// whole app router-aware.
 
+//Add font awesome icons 
+library.add([faCoffee, faPencilAlt, faTrash]);
+
+//global components 
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+//pulugins 
 Vue.use(Datetime);
 Vue.use(ClientTable);
+Vue.use(VueMoment);
 
+
+// Create and mount the root instance.
+// Make sure to inject the router with the router option to make the
 const app = new Vue({
     router,
     components: {
