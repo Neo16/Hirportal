@@ -8,9 +8,11 @@
                 <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
                 <template slot="id" slot-scope="props">
                     <div class="d-flex">
-                        <a :href="'/admin/edit-article/' + props.row.id">
-                            <font-awesome-icon icon="pencil-alt" />
-                        </a>
+                        <router-link :to="'/admin/edit-article/' + props.row.id">
+                            <a>
+                                <font-awesome-icon icon="pencil-alt" />
+                            </a>
+                        </router-link>
                         <div class="icon-wrapper pointer">
                             <font-awesome-icon @click="tryDeleteArticle(props.row.id)" icon="trash" />
                         </div>
