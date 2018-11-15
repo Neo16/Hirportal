@@ -35,8 +35,7 @@ namespace Hirportal.Web.Controllers
         }
 
         [HttpPost]
-        [Route("create-article")]        
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("create-article")]                
         public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
         {
             //Todo validation 
