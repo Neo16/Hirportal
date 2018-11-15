@@ -1,8 +1,7 @@
 ﻿<template>
     <div>
         <h2>Cikkek</h2>
-        <div id="people">
-            <v-client-table ref="articlesTable" v-if="tableData" :data="tableData" :columns="columns" :options="options">
+        <v-client-table ref="articlesTable" v-if="tableData" :data="tableData" :columns="columns" :options="options">
                 <a slot="title" slot-scope="props" :href="'/article/' + props.row.id">{{props.row.title}}</a>
                 <p slot="publishDate" slot-scope="props">{{props.row.publishDate | moment("YYYY.MM.DD hh:mm")}}</p>
                 <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
@@ -18,8 +17,7 @@
                         </div>
                     </div>
                 </template>
-            </v-client-table>
-        </div>
+         </v-client-table>        
         <confirm-modal v-if="showDeleteConfirm" @close="deleteArticle(articleToDeleteId)">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a cikket?</p>
@@ -72,14 +70,10 @@
                 this.articleToDeleteId = id;
 
             },
-            deleteArticle: function (id) {
-                console.log('deletable id:' + id);
+            deleteArticle: function (id) {              
                 this.showDeleteConfirm = false;
                 axios({
-                    method: 'delete',
-                    data: {
-                        articleId: id
-                    },
+                    method: 'delete',                   
                     url: config.apiRoot + `/admin/delete-article?articleId=${id}`,
                     headers: {
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
@@ -88,9 +82,7 @@
                 .then(response => {
                     var index = this.tableData.map(x => {
                         return x.id;
-                    }).indexOf(response.data);
-
-                    console.log('deletable index' + index);
+                    }).indexOf(response.data);                 
                     Vue.delete(this.tableData, index);
                 })
             }           

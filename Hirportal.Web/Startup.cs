@@ -16,6 +16,7 @@ using Hirportal.Dal;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Hirportal.Web.WebServices;
+using Hirportal.Web;
 
 namespace Hirportal
 {
@@ -95,6 +96,7 @@ namespace Hirportal
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseCookiePolicy();
             app.UseAuthentication();
 
