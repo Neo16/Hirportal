@@ -46,7 +46,7 @@ namespace Hirportal.Web.Controllers
         }
 
         [HttpPost]
-        [Route("update-article")]
+        [Route("update-article/{articleId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> UpdateArticle(Guid articleId, [FromBody] ArticleEditCreateData article)
         {

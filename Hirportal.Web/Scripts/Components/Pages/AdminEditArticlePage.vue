@@ -59,8 +59,11 @@
             postArticle() {
                 axios({
                     method: 'post',
-                    url: config.apiRoot + '/admin/update-article',
-                    data: this.$data.article,
+                    url: config.apiRoot + '/admin/update-article/' + this.$route.params.articleId,
+                    data: {
+                        article : this.$data.article
+                    },
+
                     headers: {
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                     }
