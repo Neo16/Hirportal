@@ -42,14 +42,16 @@
                     }
                 })
                 .then(response => {
+                    console.log(response.data);
                     this.article.Title = response.data.title;
                     this.article.CoverImageUrl = response.data.coverImageUrl;
                     this.article.HtmlContent = response.data.htmlContent;
                     this.article.PublishDate = response.data.publishDate;
                     this.article.ArchiveDate = response.data.archiveDate;
-                    this.article.ArchiveDate = response.data.archiveDate;
                     this.article.Column.Id = response.data.column.id;
                     this.article.Tags = response.data.tags;
+                    this.article.ThumbnailContent = response.data.thumbnailContent;
+                    console.log(this.article);
                 })
                 .catch(function (error) {
                     console.log(error.response);
@@ -62,8 +64,11 @@
             postArticle() {
                 axios({
                     method: 'post',
-                    url: config.apiRoot + '/admin/create-article',
-                    data: this.$data.article,
+                    url: config.apiRoot + '/admin/update-article/' + this.$route.params.articleId,
+                    data: {
+                        article : this.$data.article
+                    },
+
                     headers: {
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                     }
