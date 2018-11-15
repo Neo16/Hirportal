@@ -45,6 +45,17 @@ namespace Hirportal.Web.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("update-article")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> UpdateArticle(Guid articleId, [FromBody] ArticleEditCreateData article)
+        {
+            //Todo validation 
+            article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
+            await adminArticleService.Update(articleId,article);
+            return Ok();
+        }
+
         [HttpDelete]
         [Route("delete-article")]    
         public async Task<IActionResult> DeleteArticle(Guid articleId)

@@ -17,5 +17,6 @@ namespace Hirportal.Bll.ServiceInterfaces
         Task Delete(Guid id);
 
         Task<ArticleEditCreateData> GetByIdAsync(Guid id);
+
     }
 }
