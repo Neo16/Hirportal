@@ -34,8 +34,13 @@
                 }
             }
         }, mounted() {
-            axios
-                .get(config.apiRoot + '/admin/articles/' + this.$route.params.articleId)
+                axios({
+                    method: 'get',
+                    url: config.apiRoot + '/admin/articles/' + this.$route.params.articleId,
+                    headers: {
+                        "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                    }
+                })
                 .then(response => {
                     console.log(response.data);
                     this.article.Title = response.data.title;
