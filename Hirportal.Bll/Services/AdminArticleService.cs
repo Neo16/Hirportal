@@ -61,6 +61,7 @@ namespace Hirportal.Bll.Services
             if (articleEntity != null)
             {
                 var updatedArticleEntity = Mapper.Map<Article>(article);
+                updatedArticleEntity.Id = articleEntity.Id;
                 context.Entry(articleEntity).CurrentValues.SetValues(updatedArticleEntity);
                 await context.SaveChangesAsync();
             }
