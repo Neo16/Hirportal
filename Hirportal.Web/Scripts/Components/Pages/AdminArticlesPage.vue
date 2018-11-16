@@ -18,7 +18,7 @@
                     </div>
                 </template>
          </v-client-table>        
-        <confirm-modal v-if="showDeleteConfirm" @close="deleteArticle(articleToDeleteId)">
+        <confirm-modal ref="deleteConfirm" @ok="deleteArticle(articleToDeleteId)" :hasNegativeButton="true">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a cikket?</p>
         </confirm-modal>
@@ -37,8 +37,7 @@
         },
         data: function () {
             return {
-                articleToDeleteId: null,
-                showDeleteConfirm: false,
+                articleToDeleteId: null,            
                 columns: ['title', 'author.name', 'publishDate', 'archiveDate', 'column.name', 'id' ],
                 tableData: null,
                 theme: 'bootstrap4',
@@ -65,13 +64,11 @@
             };
         },
         methods: {
-            tryDeleteArticle: function(id) {
-                this.showDeleteConfirm = true;
+            tryDeleteArticle: function (id) {               
+                this.$refs.deleteConfirm.show();
                 this.articleToDeleteId = id;
-
             },
-            deleteArticle: function (id) {              
-                this.showDeleteConfirm = false;
+            deleteArticle: function (id) {   
                 axios({
                     method: 'delete',                   
                     url: config.apiRoot + `/admin/delete-article?articleId=${id}`,

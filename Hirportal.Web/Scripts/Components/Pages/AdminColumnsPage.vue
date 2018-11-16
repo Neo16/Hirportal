@@ -14,18 +14,22 @@
             </template>
         </v-client-table>
         <div class="float-right">
-            <button class="btn btn-outline-info" @click="showCreateColumn = true">Új rovat</button>
+            <button class="btn btn-outline-info" @click="$refs.createColumn.show()">Új rovat</button>
         </div>
 
-        <confirm-modal v-if="showCreateColumn" @close="createNewColumn()">
+        <confirm-modal ref="createColumn" @ok="createNewColumn()" :positiveButtonText="Mentés" :hasNegativeButton="true">
             <h3 slot="header">Új rovat</h3>
             <div slot="body">
                 <input v-model="columnToCreateName" class="form-control title-input" placeholder="rovat neve">
             </div>
         </confirm-modal>
-        <confirm-modal v-if="showDeleteConfirm" @close="deleteColumn(columnToDeleteId)">
+        <confirm-modal ref="deleteConfirm" @ok="deleteColumn(columnToDeleteId)" :hasNegativeButton="true">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a rovatot?</p>
+        </confirm-modal>
+        <confirm-modal ref="deleteError">
+            <h3 slot="header">Hiba</h3>
+            <p slot="body">A rovat törlése nem sikerült, előbb a hozzá tartozó cikkeket kell törölni. </p>
         </confirm-modal>
     </div>
 </template>
@@ -41,11 +45,9 @@
             ConfirmModal
         },
         data: function () {
-            return {
-                showCreateColumn: false,
+            return {                
                 columnToCreateName: null,
-                columnToDeleteId: null,
-                showDeleteConfirm: false,
+                columnToDeleteId: null,               
                 columns: ['name', 'id'],
                 tableData: null,
                 theme: 'bootstrap4',
@@ -86,8 +88,7 @@
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                     }
                 })
-                .then(response => {
-                    this.showCreateColumn = false;
+                .then(response => {                    
                     this.tableData.push({
                         name: this.columnToCreateName,
                         id: response.data
@@ -95,12 +96,11 @@
                     this.columnToCreateName = null;
                 })
             },
-            tryDeleteColumn: function (id) {
-                this.showDeleteConfirm = true;
+            tryDeleteColumn: function (id) {           
+                this.$refs.deleteConfirm.show();
                 this.columnToDeleteId = id;
             },
-            deleteColumn: function (id) {            
-                this.showDeleteConfirm = false;
+            deleteColumn: function (id) {       
                 axios({
                     method: 'delete',                
                     url: config.apiRoot + `/admin/delete-column?columnId=${id}`,
@@ -114,10 +114,13 @@
                     }).indexOf(response.data);                  
                     Vue.delete(this.tableData, index);
                 })
-                .catch(err => {
+                .catch(err => {                   
+                    if (err.response.status != 400) {
+                       alert('Törlés nem sikerült.')
+                    }
                     let responseData = err.response.data;
-                    if (responseData.errorMessages) {
-                        alert(`Hiba: ${responseData.errorMessages.toString()}`);
+                    if (responseData.errorMessages) {                      
+                        this.$refs.deleteError.show();
                     } 
                  });                
             }           
