@@ -20,11 +20,12 @@ namespace Hirportal.Bll.Services
         {
         }
 
-        public async Task Create(ColumnData column)
+        public async Task<Guid> Create(ColumnData column)
         {
             var columnObj = Mapper.Map<Column>(column);
             context.Columns.Add(columnObj);
             await context.SaveChangesAsync();
+            return columnObj.Id;
         }
 
         public async Task Delete(Guid id)
@@ -54,15 +55,14 @@ namespace Hirportal.Bll.Services
                 .ToListAsync();
         }
 
-        public async Task Update(Guid id, ColumnData column)
+        public async Task Update(ColumnData column)
         {
             var columnEntity = await context.Columns
-              .FirstOrDefaultAsync(e => e.Id == id);
+              .FirstOrDefaultAsync(e => e.Id == column.Id);
 
             if (columnEntity != null)
-            {
-                var updatedcolumnEntity = Mapper.Map<Column>(column);
-                context.Entry(columnEntity).CurrentValues.SetValues(updatedcolumnEntity);
+            {            
+                columnEntity.Name = column.Name;
                 await context.SaveChangesAsync();
             }
             else

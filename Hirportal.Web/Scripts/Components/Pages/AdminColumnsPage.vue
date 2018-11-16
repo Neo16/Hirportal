@@ -5,7 +5,7 @@
             <template slot="id" slot-scope="props">
                 <div class="d-flex float-right">
                     <div class="icon-wrapper pointer">
-                        <font-awesome-icon icon="pencil-alt" />
+                        <font-awesome-icon icon="pencil-alt" @click="openEditColumn(props.row)" />
                     </div>
                     <div class="icon-wrapper pointer">
                         <font-awesome-icon icon="trash" @click="tryDeleteColumn(props.row.id)" />
@@ -21,6 +21,12 @@
             <h3 slot="header">Új rovat</h3>
             <div slot="body">
                 <input v-model="columnToCreateName" class="form-control title-input" placeholder="rovat neve">
+            </div>
+        </confirm-modal>
+        <confirm-modal ref="editColumn" @ok="editColumn()" :positiveButtonText="Átnevezés" :hasNegativeButton="true">
+            <h3 slot="header">Rovat átnevezése</h3>
+            <div slot="body">
+                <input v-model="columnToEdit.name" class="form-control title-input" placeholder="rovat neve">
             </div>
         </confirm-modal>
         <confirm-modal ref="deleteConfirm" @ok="deleteColumn(columnToDeleteId)" :hasNegativeButton="true">
@@ -47,7 +53,11 @@
         data: function () {
             return {                
                 columnToCreateName: null,
-                columnToDeleteId: null,               
+                columnToDeleteId: null,     
+                columnToEdit: {
+                    name: null,
+                    id: null
+                },
                 columns: ['name', 'id'],
                 tableData: null,
                 theme: 'bootstrap4',
@@ -77,6 +87,27 @@
             })
         },
         methods: {
+            openEditColumn: function (column) {
+                this.$refs.editColumn.show();  
+                this.columnToEdit.name = column.name;
+                this.columnToEdit.id = column.id;
+            },
+            editColumn: function () {
+                axios({
+                    method: 'put',
+                    url: config.apiRoot + '/admin/update-column',
+                    data: this.columnToEdit,                    
+                    headers: {
+                        "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                    }
+                })
+                .then(response => {                    
+                    let index = this.tableData.map(function (c) { return c.id; }).indexOf(this.columnToEdit.id);
+                    Vue.set(this.tableData, index, response.data);
+                    this.columnToEdit.name = null;
+                    this.columnToEdit.id = null;
+                })
+            },
             createNewColumn: function () {
                 axios({
                     method: 'post',

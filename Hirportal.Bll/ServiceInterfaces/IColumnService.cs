@@ -9,9 +9,9 @@ namespace Hirportal.Bll.ServiceInterfaces
     {
         Task<IEnumerable<ColumnData>> Get();
 
-        Task Create(ColumnData column);
+        Task<Guid> Create(ColumnData column);
 
-        Task Update(Guid id, ColumnData column);
+        Task Update(ColumnData column);
 
         Task Delete(Guid id);
     }

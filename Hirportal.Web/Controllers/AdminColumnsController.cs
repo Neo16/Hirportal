@@ -24,8 +24,8 @@ namespace Hirportal.Web.Controllers
         [Route("create-column")]      
         public async Task<IActionResult> CreateColumn([FromBody] ColumnData column)
         {            
-            await columnService.Create(column);
-            return Ok();
+            Guid createdColumnId = await columnService.Create(column);
+            return Ok(createdColumnId);
         }
 
         [HttpDelete]
@@ -34,6 +34,14 @@ namespace Hirportal.Web.Controllers
         {
             await columnService.Delete(columnId);
             return Ok(columnId);
+        }
+
+        [HttpPut]
+        [Route("update-column")]
+        public async Task<IActionResult> UpdateColumn([FromBody] ColumnData column)
+        {            
+            await columnService.Update(column);
+            return Ok(column);
         }
     }    
 }
