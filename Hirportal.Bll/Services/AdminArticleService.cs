@@ -56,12 +56,24 @@ namespace Hirportal.Bll.Services
         public async Task Update(Guid id, ArticleEditCreateData article)
         {
             var articleEntity = await context.Articles
+                .Include(e => e.ArticleTags)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
             if (articleEntity != null)
             {
                 var updatedArticleEntity = Mapper.Map<Article>(article);
                 updatedArticleEntity.Id = articleEntity.Id;
+                foreach(var articleTag in updatedArticleEntity.ArticleTags)
+                {
+                    articleTag.Tag = null;
+                    articleTag.ArticleId = articleEntity.Id;
+                }
+                if (articleEntity.ArticleTags != null && articleEntity.ArticleTags.Count() > 0)
+                {
+                    context.ArticleTags.RemoveRange(articleEntity.ArticleTags);
+                }               
+                context.ArticleTags.AddRange(updatedArticleEntity.ArticleTags);
+
                 context.Entry(articleEntity).CurrentValues.SetValues(updatedArticleEntity);
                 await context.SaveChangesAsync();
             }

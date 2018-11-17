@@ -7,7 +7,7 @@
             <label>Rovat</label>
             <select v-model="article.Column.Id" class="form-control">
                 <option disabled selected value="">Rovat</option>
-                <option v-if="columns" v-for="column in columns" v-bind:value="columns.id">
+                <option v-if="columns" v-for="column in columns" v-bind:value="column.id">
                     {{ column.name }}
                 </option>
             </select>

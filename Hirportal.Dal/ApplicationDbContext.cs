@@ -11,6 +11,8 @@ namespace Hirportal.Dal
 
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<ArticleTag> ArticleTags { get; set; }
+
         public DbSet<Column> Columns { get; set; }
 
         public DbSet<Tag> Tags { get; set; }

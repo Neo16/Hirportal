@@ -39,6 +39,8 @@ namespace Hirportal.Bll
                 .ForMember(e => e.Tags, f => f.MapFrom(k => k.ArticleTags))
                 .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.Author.Id))
                 .ReverseMap()
+                .ForMember(e => e.ColumnId, f => f.MapFrom(k => k.Column.Id))
+                .ForMember(e => e.Column, f => f.Ignore())
                 .ForMember(e => e.AuthorId, f => f.MapFrom(k => k.AuthorId))
                 .ForMember(e => e.Author, f => f.Ignore());
 
