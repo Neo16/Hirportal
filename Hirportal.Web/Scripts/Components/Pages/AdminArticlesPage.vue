@@ -2,22 +2,22 @@
     <div>
         <h2>Cikkek</h2>
         <v-client-table ref="articlesTable" v-if="tableData" :data="tableData" :columns="columns" :options="options">
-                <a slot="title" slot-scope="props" :href="'/article/' + props.row.id">{{props.row.title}}</a>
-                <p slot="publishDate" slot-scope="props">{{props.row.publishDate | moment("YYYY.MM.DD hh:mm")}}</p>
-                <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
-                <template slot="id" slot-scope="props">
-                    <div class="d-flex">
-                        <router-link :to="'/admin/edit-article/' + props.row.id">
-                            <a>
-                                <font-awesome-icon icon="pencil-alt" />
-                            </a>
-                        </router-link>
-                        <div class="icon-wrapper pointer">
-                            <font-awesome-icon @click="tryDeleteArticle(props.row.id)" icon="trash" />
-                        </div>
+            <a slot="title" slot-scope="props" :href="'/article/' + props.row.id">{{props.row.title}}</a>
+            <p slot="publishDate" slot-scope="props">{{props.row.publishDate | moment("YYYY.MM.DD hh:mm")}}</p>
+            <p slot="archiveDate" slot-scope="props">{{props.row.archiveDate | moment("YYYY.MM.DD hh:mm")}}</p>
+            <template slot="id" slot-scope="props">
+                <div class="d-flex">
+                    <router-link :to="'/admin/edit-article/' + props.row.id">
+                        <a>
+                            <font-awesome-icon icon="pencil-alt" />
+                        </a>
+                    </router-link>
+                    <div class="icon-wrapper pointer">
+                        <font-awesome-icon @click="tryDeleteArticle(props.row.id)" icon="trash" />
                     </div>
-                </template>
-         </v-client-table>        
+                </div>
+            </template>
+        </v-client-table>
         <basic-modal ref="deleteConfirm" @ok="deleteArticle(articleToDeleteId)" :hasNegativeButton="true">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a cikket?</p>
@@ -30,6 +30,7 @@
     import axios from 'axios';
     import { store } from '../../store';
     import BasicModal from '../Molecules/BasicModal'
+    import { dateCompare } from '../../utils';  
 
     export default {
         components: {
@@ -37,8 +38,8 @@
         },
         data: function () {
             return {
-                articleToDeleteId: null,            
-                columns: ['title', 'author.name', 'publishDate', 'archiveDate', 'column.name', 'id' ],
+                articleToDeleteId: null,
+                columns: ['title', 'author.name', 'publishDate', 'archiveDate', 'column.name', 'id'],
                 tableData: null,
                 theme: 'bootstrap4',
                 options: {
@@ -59,42 +60,46 @@
                         filter: '',
                         filterBy: 'keresés {column} alapján',
                         count: ''
+                    },
+                    customSorting: {
+                        publishDate: dateCompare('publishDate'),
+                        archiveDate: dateCompare('archiveDate')
                     }
                 }
             };
         },
         methods: {
-            tryDeleteArticle: function (id) {               
+            tryDeleteArticle: function (id) {
                 this.$refs.deleteConfirm.show();
                 this.articleToDeleteId = id;
             },
-            deleteArticle: function (id) {   
+            deleteArticle: function (id) {
                 axios({
-                    method: 'delete',                   
+                    method: 'delete',
                     url: config.apiRoot + `/admin/delete-article?articleId=${id}`,
                     headers: {
                         "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                     }
                 })
-                .then(response => {
-                    var index = this.tableData.map(x => {
-                        return x.id;
-                    }).indexOf(response.data);                 
-                    Vue.delete(this.tableData, index);
-                })
-            }           
+                    .then(response => {
+                        var index = this.tableData.map(x => {
+                            return x.id;
+                        }).indexOf(response.data);
+                        Vue.delete(this.tableData, index);
+                    })
+            }
         },
         mounted() {
             axios({
                 method: 'GET',
-                url: config.apiRoot + '/admin/articles' ,
+                url: config.apiRoot + '/admin/articles',
                 headers: {
                     "Authorization": `Bearer ${store.state.loginInfo.userToken}`
                 }
             })
-            .then(response => {
-                this.tableData = response.data;
-            })
+                .then(response => {
+                    this.tableData = response.data;
+                })
         }
     }
 </script>
