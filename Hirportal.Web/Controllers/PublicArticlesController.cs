@@ -35,8 +35,8 @@ namespace Hirportal.Web.Controllers
 
         //Todo: Configba visszaadott cikkek száma. 
         //Todo: lapozás? 
-        [HttpPost("articles/find")]
-        public async Task<ActionResult> Find([FromBody] ArticleFilterData filter)
+        [HttpPost("articles/search")]
+        public async Task<ActionResult> Search([FromBody] ArticleFilterData filter)
         {
             IEnumerable<ArticleHeaderData> article = await publicArticleService.FindAsync(filter);
             return Ok(article);

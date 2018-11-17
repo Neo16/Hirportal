@@ -18,10 +18,10 @@
                     </div>
                 </template>
          </v-client-table>        
-        <confirm-modal ref="deleteConfirm" @ok="deleteArticle(articleToDeleteId)" :hasNegativeButton="true">
+        <basic-modal ref="deleteConfirm" @ok="deleteArticle(articleToDeleteId)" :hasNegativeButton="true">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a cikket?</p>
-        </confirm-modal>
+        </basic-modal>
     </div>
 </template>
 <script>
@@ -29,11 +29,11 @@
     import { config } from '../../config';
     import axios from 'axios';
     import { store } from '../../store';
-    import ConfirmModal from '../Molecules/ConfirmModal'
+    import BasicModal from '../Molecules/BasicModal'
 
     export default {
         components: {
-            ConfirmModal
+            BasicModal
         },
         data: function () {
             return {

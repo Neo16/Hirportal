@@ -17,19 +17,26 @@ namespace Hirportal.Bll.Services
         public PublicArticleService(ApplicationDbContext context) : base(context)
         {
         }
-
-        //Tag-kereső oldal külön. 
+       
         public async Task<IEnumerable<ArticleHeaderData>> FindAsync(ArticleFilterData filter)
         {
             var query = context.Articles
                 .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter.FreeTextParam))
+            {
+                query = query.Where(e => e.Title.ToUpper().Contains(filter.FreeTextParam.ToUpper())
+                    || e.HtmlContent.ToUpper().Contains(filter.FreeTextParam.ToUpper()));
+            }
             
             if (filter.Tags != null && filter.Tags.Count > 0)
             {
-                query = query.Where(e => e.ArticleTags.Any(f => filter.Tags.Contains(f.Tag.Value.ToLower())));
+                var filteredTagIds = filter.Tags.Select(e => e.TagId);
+                query = query.Where(e => e.ArticleTags.Any(f => filteredTagIds.Contains(f.TagId)));
             }
  
             return await query
+              .Skip(filter.PageStart).Take(filter.PageLength) // lapozás 
               .ProjectTo<ArticleHeaderData>()
               .ToListAsync();
         }

@@ -17,26 +17,26 @@
             <button class="btn btn-outline-info" @click="$refs.createColumn.show()">Új rovat</button>
         </div>
 
-        <confirm-modal ref="createColumn" @ok="createNewColumn()" :positiveButtonText="Mentés" :hasNegativeButton="true">
+        <basic-modal ref="createColumn" @ok="createNewColumn()" :positiveButtonText="Mentés" :hasNegativeButton="true">
             <h3 slot="header">Új rovat</h3>
             <div slot="body">
                 <input v-model="columnToCreateName" class="form-control title-input" placeholder="rovat neve">
             </div>
-        </confirm-modal>
-        <confirm-modal ref="editColumn" @ok="editColumn()" :positiveButtonText="Átnevezés" :hasNegativeButton="true">
+        </basic-modal>
+        <basic-modal ref="editColumn" @ok="editColumn()" :positiveButtonText="Átnevezés" :hasNegativeButton="true">
             <h3 slot="header">Rovat átnevezése</h3>
             <div slot="body">
                 <input v-model="columnToEdit.name" class="form-control title-input" placeholder="rovat neve">
             </div>
-        </confirm-modal>
-        <confirm-modal ref="deleteConfirm" @ok="deleteColumn(columnToDeleteId)" :hasNegativeButton="true">
+        </basic-modal>
+        <basic-modal ref="deleteConfirm" @ok="deleteColumn(columnToDeleteId)" :hasNegativeButton="true">
             <h3 slot="header">Megerősítés</h3>
             <p slot="body">Biztosan törölni akarja a rovatot?</p>
-        </confirm-modal>
-        <confirm-modal ref="deleteError">
+        </basic-modal>
+        <basic-modal ref="deleteError">
             <h3 slot="header">Hiba</h3>
             <p slot="body">A rovat törlése nem sikerült, előbb a hozzá tartozó cikkeket kell törölni. </p>
-        </confirm-modal>
+        </basic-modal>
     </div>
 </template>
 <script>
@@ -44,11 +44,11 @@
     import { config } from '../../config';
     import axios from 'axios';
     import { store } from '../../store';
-    import ConfirmModal from '../Molecules/ConfirmModal'
+    import BasicModal from '../Molecules/BasicModal'
 
     export default {
         components: {
-            ConfirmModal
+            BasicModal
         },
         data: function () {
             return {                

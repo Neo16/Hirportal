@@ -7,9 +7,11 @@
 
   <ItemGroup>
     <None Remove="Scripts\Components\Atoms\ArticleCell.js" />
+    <None Remove="Scripts\Components\Atoms\SearchPanel.js" />
     <None Remove="Scripts\Components\Layout.js" />
     <None Remove="Scripts\Components\Molecules\ArticleForm.js" />
     <None Remove="Scripts\Components\Molecules\ArticlesBlock.js" />
+    <None Remove="Scripts\Components\Molecules\BasicModal.js" />
     <None Remove="Scripts\Components\Molecules\ConfirmModal.js" />
     <None Remove="Scripts\Components\Molecules\Navbar.js" />
     <None Remove="Scripts\Components\Pages\AdminArticlesPage.js" />
@@ -23,6 +25,7 @@
     <None Remove="Scripts\Components\Pages\Home.js" />
     <None Remove="Scripts\Components\Pages\LoginPage.js" />
     <None Remove="Scripts\Components\Pages\MainPage.js" />
+    <None Remove="Scripts\Components\Pages\SearchPage.js" />
     <None Remove="Scripts\Components\testComponent.js" />
     <None Remove="Scripts\Components\Vlink.js" />
     <None Remove="Scripts\utills.js" />

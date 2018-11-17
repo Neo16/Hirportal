@@ -2,7 +2,7 @@
     <transition name="modal" v-if="visible">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container">
+                <div class="modal-container" v-bind:style="{width: width}">
 
                     <div class="modal-header text-info">
                         <slot name="header">
@@ -44,7 +44,11 @@
             negativeButtonText: {
                 type: String,
                 default: 'Mégse'
-            }           
+            },
+            width: {
+                type: String,
+                default: '350px',
+            }
         },        
         methods: {
             ok: function () {

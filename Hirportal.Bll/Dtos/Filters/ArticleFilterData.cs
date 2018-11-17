@@ -6,6 +6,9 @@ namespace Hirportal.Bll.Dtos
 {
     public class ArticleFilterData
     {
-        public List<string> Tags { get; set; }        
+        public int PageStart { get; set; }
+        public int PageLength { get; set; }
+        public string FreeTextParam { get; set; }
+        public List<TagData> Tags { get; set; }        
     }
 }

@@ -11,10 +11,11 @@ import Datetime from 'vue-datetime';
 import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
 import AdminEditArticlePage from './Components/Pages/AdminEditArticlePage.js';
+import SearchPage from './Components/Pages/SearchPage.js';
 import { ClientTable } from 'vue-tables-2';
 import VueMoment from 'vue-moment';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faPencilAlt, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //Define routes
@@ -24,10 +25,11 @@ const routes = [
     { path: '/article/:articleId', component: ArticleDetails },
     { path: '/column/:columnName', component: ColumnPage},
     { path: '/login', component: LoginPage },
+    { path: '/search', component: SearchPage },
     { path: '/admin/create-article', component: CreateArticlePage, beforeEnter: adminFilter },
     { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
     { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter },
-    { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }
+    { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }   
 ];
 
 function adminFilter(to, from, next) {
@@ -47,7 +49,7 @@ const router = new VueRouter({
 
 
 //Add font awesome icons 
-library.add([faCoffee, faPencilAlt, faTrash]);
+library.add([faCoffee, faPencilAlt, faTrash, faSearch]);
 
 //global components 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

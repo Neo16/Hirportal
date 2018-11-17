@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='js:prod, sass:prod' ProjectOpened='watch' />
+/// <binding />
 'use strict';
 //const components = require('gulp-single-file-components');
 const vueify = require('gulp-vueify2');
