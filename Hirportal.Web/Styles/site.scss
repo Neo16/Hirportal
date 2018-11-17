@@ -292,3 +292,18 @@ th:nth-child(3) {
 .pointer {
     cursor: pointer;
 }
+
+.tag-item {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #CDBF7C;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-size: 16px; 
+}
+
+.tags-label {   
+    font-style: italic;
+    font-size: 16px;
+}

@@ -8,6 +8,7 @@
   <ItemGroup>
     <None Remove="Scripts\Components\Atoms\ArticleCell.js" />
     <None Remove="Scripts\Components\Atoms\SearchPanel.js" />
+    <None Remove="Scripts\Components\Atoms\TagItem.js" />
     <None Remove="Scripts\Components\Layout.js" />
     <None Remove="Scripts\Components\Molecules\ArticleForm.js" />
     <None Remove="Scripts\Components\Molecules\ArticlesBlock.js" />

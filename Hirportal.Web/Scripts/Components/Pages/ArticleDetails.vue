@@ -7,14 +7,25 @@
         </div>
         <div class="article-title">szerző: {{article.title}}</div>
         <div class="article-body" v-html="article.htmlContent"></div>
+        <div class="mt-4 text-right">
+            <span class="tags-label">Címkék:</span>
+            <tag-item v-for="tag in article.tags"
+                      :tag="tag"
+                      :key="tag.tagId">
+            </tag-item>
+        </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
     import { config } from '../../config';
+    import tagItem from '../Atoms/TagItem';
 
     export default {
+        components: {
+            tagItem
+        },
         data: function () {
             return {
                article: null
