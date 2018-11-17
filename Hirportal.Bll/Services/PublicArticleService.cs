@@ -18,7 +18,7 @@ namespace Hirportal.Bll.Services
         {
         }
        
-        public async Task<IEnumerable<ArticleHeaderData>> FindAsync(ArticleFilterData filter)
+        public async Task<ArticleSearchResultDto> FindAsync(ArticleFilterData filter)
         {
             var query = context.Articles
                 .AsQueryable();
@@ -33,12 +33,15 @@ namespace Hirportal.Bll.Services
             {
                 var filteredTagIds = filter.Tags.Select(e => e.TagId);
                 query = query.Where(e => e.ArticleTags.Any(f => filteredTagIds.Contains(f.TagId)));
-            }
- 
-            return await query
-              .Skip(filter.PageStart).Take(filter.PageLength) // lapozás 
-              .ProjectTo<ArticleHeaderData>()
-              .ToListAsync();
+            }          
+
+            return new ArticleSearchResultDto() {
+               Total = await query.CountAsync(),
+               Articles = await query
+                  .Skip(filter.PageStart).Take(filter.PageLength) // lapozás 
+                  .ProjectTo<ArticleHeaderData>()
+                  .ToListAsync()
+            };
         }
 
         public async Task<IEnumerable<ArticleHeaderData>> GetByColumn(string column)

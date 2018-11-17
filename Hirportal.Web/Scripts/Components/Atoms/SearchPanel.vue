@@ -1,16 +1,12 @@
 ﻿<template>
-    <b-tabs>
-        <b-tab title="Címke alapján" active>
-            <div class="form-group mt-4">
-                <v-select multiple v-model="searchObj.tags" label="name" :options="tags"></v-select>
-            </div>
-        </b-tab>
-        <b-tab title="Szabad szöveg">
-            <div class="form-group mt-4">
-                <input v-model="searchObj.freeTextParam" class="form-control" rows="3" />
-            </div>
-        </b-tab>
-    </b-tabs>
+    <div>
+        <div class="form-group mt-4">
+            <v-select :placeholder="'címkék'" multiple v-model="searchParams.tags" label="name" :options="tags"></v-select>
+        </div>
+        <div class="form-group mt-4">
+            <input placeholder="szabad szöveg" v-model="searchParams.freeTextParam" class="form-control" rows="3" />
+        </div>
+    </div>     
 </template>
 
 <script>
@@ -26,11 +22,9 @@
         data: function () {
             return {
                 tags: [],
-                searchObj: {
-                    tags: store.state.searchObj.tags,
-                    freeTextParam: store.state.searchObj.freeTextParam,
-                    pageStart: store.state.searchObj.pageStart,
-                    pageLength: store.state.searchObj.pageLength
+                searchParams: {
+                    tags: store.state.searchParams.tags,
+                    freeTextParam: store.state.searchParams.freeTextParam                    
                 }
             }
         },      

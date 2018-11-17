@@ -4,32 +4,38 @@
             userName: null,
             userToken: null
         },
-        searchResultArticles: [], 
-        isSearching: {
-            value: false
+        searchState: {
+            resultArticles: [],
+            totalResultNum: null,
+            isSearching: false
         },
-        searchObj: {
-            tags: [],
-            freeTextParam: '',
+        searchPagination: {
             pageStart: 0,
             pageLength: 21
+        },
+        searchParams: {
+            tags: [],
+            freeTextParam: '',           
         }
     },
     setLoginInfo(newUserName, newUserToken) {
         this.state.loginInfo.userName = newUserName;
         this.state.loginInfo.userToken = newUserToken;
     },
-    setSearcResultArticles(searchResultArticles) {
-        this.state.searchResultArticles.length = 0; 
-        this.state.searchResultArticles.push(...searchResultArticles);              
+    setSearcResultArticles(searchResult) {
+        this.state.searchState.resultArticles.length = 0; 
+        this.state.searchState.resultArticles.push(...searchResult.articles);
+        this.state.searchState.totalResultNum = searchResult.total;
     },
-    setSearchObj(searchObj) {
-        this.state.searchObj.freeTextParam = searchObj.freeTextParam;
-        this.state.searchObj.tags = searchObj.tags;
-        this.state.searchObj.pageStart = searchObj.pageStart;
-        this.state.searchObj.pageLength = searchObj.pageLength;
+    setSearchParams(searchParams) {
+        this.state.searchParams.freeTextParam = searchParams.freeTextParam;
+        this.state.searchParams.tags = searchParams.tags;      
     },
-    setIsSearching(isSearching) {       
-       this.state.isSearching.value = isSearching;              
+    setSearchPagination(searchPagination) {
+        this.state.searchPagination.pageStart = searchPagination.pageStart;
+        this.state.searchPagination.pageLength = searchPagination.pageLength;
+    },
+    setIsSearching(isSearching) {
+        this.state.searchState.isSearching = isSearching;              
     }
 };

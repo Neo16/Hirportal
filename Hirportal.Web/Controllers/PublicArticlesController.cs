@@ -38,8 +38,8 @@ namespace Hirportal.Web.Controllers
         [HttpPost("articles/search")]
         public async Task<ActionResult> Search([FromBody] ArticleFilterData filter)
         {
-            IEnumerable<ArticleHeaderData> article = await publicArticleService.FindAsync(filter);
-            return Ok(article);
+            ArticleSearchResultDto searchResult = await publicArticleService.FindAsync(filter);
+            return Ok(searchResult);
         }
 
         //Todo: Configba visszaadott cikkek száma. 

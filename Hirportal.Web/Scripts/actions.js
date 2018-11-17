@@ -8,13 +8,15 @@ export const actions = {
         axios({
             method: 'post',
             url: config.apiRoot + '/articles/search',
-            data: store.state.searchObj,
+            data: {
+                ...store.state.searchParams, ...store.state.searchPagination
+            },
             headers: {
                 "Authorization": `Bearer ${store.state.loginInfo.userToken}`
             }
         })
-        .then(response => {
-            store.setSearcResultArticles(response.data);
+        .then(response => {            
+            store.setSearcResultArticles(response.data);              
             store.setIsSearching(false);
         })
         .catch(function (error) {

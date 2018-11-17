@@ -11,7 +11,7 @@ namespace Hirportal.Bll.ServiceInterfaces
     {
         Task<ArticleDisplayData> GetByIdAsync(Guid id);
 
-        Task<IEnumerable<ArticleHeaderData>> FindAsync(ArticleFilterData filter);
+        Task<ArticleSearchResultDto> FindAsync(ArticleFilterData filter);
 
         Task<IEnumerable<ArticleHeaderData>> GetByColumn(string column);
 

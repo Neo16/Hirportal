@@ -66,7 +66,11 @@
                 this.$refs.searchModal.show();
             },
             searchArticles: function () {
-                store.setSearchObj(this.$refs.searchPanel.searchObj);
+                store.setSearchPagination({
+                    pageStart: 0,
+                    pageLength: 21
+                });
+                store.setSearchParams(this.$refs.searchPanel.searchParams);
                 actions.searchArticles();
                 this.$router.push('/search');
             }
@@ -77,8 +81,7 @@
                 columns: null              
             };
         },
-        mounted() {
-            console.log('navbar mounted data:' + this.loginInfo.userName);
+        mounted() {         
             axios
                 .get(config.apiRoot + '/columns')
                 .then(response => {
