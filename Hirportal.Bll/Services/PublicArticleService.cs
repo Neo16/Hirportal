@@ -20,7 +20,10 @@ namespace Hirportal.Bll.Services
        
         public async Task<ArticleSearchResultDto> FindAsync(ArticleFilterData filter)
         {
+            var now = DateTime.Now;
+
             var query = context.Articles
+                .Where(e =>e.PublishDate <= now)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filter.FreeTextParam))
@@ -37,7 +40,7 @@ namespace Hirportal.Bll.Services
 
             return new ArticleSearchResultDto() {
                Total = await query.CountAsync(),
-               Articles = await query
+               Articles = await query                   
                   .Skip(filter.PageStart).Take(filter.PageLength) // lapozás 
                   .ProjectTo<ArticleHeaderData>()
                   .ToListAsync()
@@ -45,10 +48,12 @@ namespace Hirportal.Bll.Services
         }
 
         public async Task<IEnumerable<ArticleHeaderData>> GetByColumn(string column)
-        {            
+        {
+            var now = DateTime.Now;
             //todo csak configban megadott darabot visszaadni 
             return await context.Articles
                 .Where(e => e.Column.Name.ToLower() == column.ToLower())
+                .Where(e => e.PublishDate <= now && e.ArchiveDate >= now)
                 .ProjectTo<ArticleHeaderData>()
                 .ToListAsync();
         }
@@ -57,6 +62,7 @@ namespace Hirportal.Bll.Services
         {
             return await context.Articles
                 .Where(e => e.Id == articleId)
+                .Where(e => e.PublishDate <= DateTime.Now)
                 .ProjectTo<ArticleDisplayData>()
                 .FirstOrDefaultAsync();
         }

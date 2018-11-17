@@ -80,7 +80,7 @@ namespace Hirportal.Dal
 
             foreach (Article a in articleList)
             {
-                a.ThumbnailContent = a.CoverImageUrl == null ? LoremHelper.Text.Substring(0, 300) : LoremHelper.Text.Substring(0, 150);
+                a.ThumbnailContent = a.CoverImageUrl == null ? LoremHelper.ThumbnailText.Substring(0, 300) : LoremHelper.ThumbnailText.Substring(0, 150);
 
                 if (a.CoverImageUrl == null)
                 {

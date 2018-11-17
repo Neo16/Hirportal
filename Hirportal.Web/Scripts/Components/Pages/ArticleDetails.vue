@@ -1,8 +1,12 @@
 ﻿<template>
     <div v-if="article" class="article-details">
         <img v-if="article.coverImageUrl" class="article-img" v-bind:src="article.coverImageUrl" />
-        <p class="article-title">{{article.title}}</p>
-        <p v-html="article.htmlContent"></p>
+        <div class="author-block d-flex justify-content-between">
+            <div class="author-name">{{article.authorName}}</div>
+            <div class="publish-date">{{article.publishDate | moment("YYYY.MM.DD hh:mm")}}</div>
+        </div>
+        <div class="article-title">szerző: {{article.title}}</div>
+        <div class="article-body" v-html="article.htmlContent"></div>
     </div>
 </template>
 
