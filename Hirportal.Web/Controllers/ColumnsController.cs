@@ -13,11 +13,12 @@ namespace Hirportal.Web.Controllers
     [ApiController]
     public class ColumnsController : ControllerBase
     {
-        public readonly IColumnService columnService;
+       
+        public readonly IPublicColumnService publiColumnService;
 
-        public ColumnsController(IColumnService columnService)
-        {           
-            this.columnService = columnService;
+        public ColumnsController(IPublicColumnService publiColumnService)
+        {
+            this.publiColumnService = publiColumnService;       
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace Hirportal.Web.Controllers
         [HttpGet("columns")]
         public async Task<ActionResult> ListColumns()
         {
-            IEnumerable<ColumnData> columns = await columnService.Get();
+            IEnumerable<ColumnData> columns = await publiColumnService.Get();
             return Ok(columns);
         }
     }    

@@ -13,9 +13,9 @@ namespace Hirportal.Web.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AdminColumnsController : ControllerBase
     {
-        public readonly IColumnService columnService;
+        public readonly IAdminColumnService columnService;
 
-        public AdminColumnsController(IColumnService columnService)
+        public AdminColumnsController(IAdminColumnService columnService)
         {           
             this.columnService = columnService;
         }       

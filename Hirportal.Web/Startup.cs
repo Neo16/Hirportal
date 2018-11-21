@@ -63,7 +63,7 @@ namespace Hirportal
              });
 
             // Add application services.
-            var assembly = typeof(IEmailSender).Assembly;
+            var assembly = typeof(IPublicArticleService).Assembly;
             var serviceTypes = assembly.ExportedTypes
                .Where(e => e.IsClass && e.IsPublic && !e.IsAbstract)
                .Where(e => e.IsSubclassOf(typeof(ServiceBase)))

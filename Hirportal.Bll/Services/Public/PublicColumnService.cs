@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace Hirportal.Bll.Services
 {
-    public class ColumnService : ServiceBase, IColumnService
+    public class PublicColumnService : ServiceBase, IPublicColumnService
     {
-        public ColumnService(ApplicationDbContext context) : base(context)
+        public PublicColumnService(ApplicationDbContext context) : base(context)
         {
         }
 

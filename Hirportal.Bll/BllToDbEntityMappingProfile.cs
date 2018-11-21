@@ -10,9 +10,7 @@ namespace Hirportal.Bll
     public class BllToDbEntityMappingProfile : Profile
     {
         public BllToDbEntityMappingProfile()
-        {
-            CreateMap<Form, ExampleFormData>()
-                .ReverseMap();
+        {       
 
             CreateMap<Article, ArticleHeaderData>()
                 .ForMember(e => e.Id, f => f.MapFrom(k => k.Id))

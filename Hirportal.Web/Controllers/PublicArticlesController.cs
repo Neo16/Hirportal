@@ -13,9 +13,9 @@ namespace Hirportal.Web.Controllers
     public class PublicArticlesController : ControllerBase
     {
         public readonly IPublicArticleService publicArticleService;
-        public readonly IColumnService columnService;
+        public readonly IPublicColumnService columnService;
 
-        public PublicArticlesController(IPublicArticleService publicArticleService, IColumnService columnService)
+        public PublicArticlesController(IPublicArticleService publicArticleService, IPublicColumnService columnService)
         {
             this.publicArticleService = publicArticleService;
             this.columnService = columnService;

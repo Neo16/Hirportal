@@ -7,7 +7,6 @@ namespace Hirportal.Dal
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Form> Form { get; set; }
 
         public DbSet<Article> Articles { get; set; }
 
