@@ -12,7 +12,7 @@ using Hirportal.Model;
 
 namespace Hirportal.Bll.Services
 {
-    public class AdminTagService: ServiceBase, IPublicTagService
+    public class AdminTagService: ServiceBase, IAdminTagService
     {
         public AdminTagService(ApplicationDbContext context) : base(context)
         {

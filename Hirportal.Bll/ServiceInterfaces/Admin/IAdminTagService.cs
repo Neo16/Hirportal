@@ -9,7 +9,7 @@ namespace Hirportal.Bll.ServiceInterfaces
     {
         Task<IEnumerable<TagData>> Get();
 
-        Task Add(TagData tag);
+        Task<Guid> Create(TagData tag);
 
         Task Update(TagData tag);
 
