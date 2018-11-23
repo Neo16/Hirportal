@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <h2>Rovatok</h2>
+        <h2>Címkék</h2>
         <v-client-table ref="tagsTable" v-if="tableData" :data="tableData" :columns="tags" :options="options">
             <template slot="id" slot-scope="props">
                 <div class="d-flex float-right">
@@ -8,7 +8,7 @@
                         <font-awesome-icon icon="pencil-alt" @click="openEditTag(props.row)" />
                     </div>
                     <div class="icon-wrapper pointer">
-                        <font-awesome-icon icon="trash" @click="tryDeleteTag(props.row.id)" />
+                        <font-awesome-icon icon="trash" @click="tryDeleteTag(props.row.tagId)" />
                     </div>
                 </div>
             </template>
@@ -56,7 +56,7 @@
                 tagToDeleteId: null,     
                 tagToEdit: {
                     name: null,
-                    id: null
+                    tagId: null
                 },
                 tags: ['name', 'id'],
                 tableData: null,
@@ -90,7 +90,7 @@
             openEditTag: function (tag) {
                 this.$refs.editTag.show();  
                 this.tagToEdit.name = tag.name;
-                this.tagToEdit.id = tag.id;
+                this.tagToEdit.tagId = tag.tagId;
             },
             editTag: function () {
                 axios({
@@ -102,10 +102,10 @@
                     }
                 })
                 .then(response => {                    
-                    let index = this.tableData.map(function (c) { return c.id; }).indexOf(this.tagToEdit.id);
+                    let index = this.tableData.map(function (c) { return c.tagId; }).indexOf(this.tagToEdit.tagId);
                     Vue.set(this.tableData, index, response.data);
                     this.tagToEdit.name = null;
-                    this.tagToEdit.id = null;
+                    this.tagToEdit.tagId = null;
                 })
             },
             createNewTag: function () {
@@ -122,7 +122,7 @@
                 .then(response => {                    
                     this.tableData.push({
                         name: this.tagToCreateName,
-                        id: response.data
+                        tagId: response.data
                     })
                     this.tagToCreateName = null;
                 })
@@ -141,7 +141,7 @@
                 })
                .then(response => {                   
                     var index = this.tableData.map(x => {
-                        return x.id;
+                        return x.tagId;
                     }).indexOf(response.data);                  
                     Vue.delete(this.tableData, index);
                 })

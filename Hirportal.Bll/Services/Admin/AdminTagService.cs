@@ -26,7 +26,7 @@ namespace Hirportal.Bll.Services
                 .AnyAsync(e => e.TagId == id);
             if (tagHasArticles)
             {
-                throw new BusinessLogicException("A címke nem törölhető, mert cikkek tartoznak hozzá.") { ErrorCode = ErrorCode.InvalidArgument };
+                throw new BusinessLogicException("A címke nem törölhető, mert cikkek vannak még hozzárendelve.") { ErrorCode = ErrorCode.InvalidArgument };
             }
 
             var tagEntity = await context.Tags

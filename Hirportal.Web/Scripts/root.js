@@ -32,7 +32,7 @@ const routes = [
     { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
     { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter },
     { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter },
-    { path: '/admin/edit-mainpage', component: AdminMainPageEditor, beforeEnter: adminFilter }
+    { path: '/admin/edit-mainpage', component: AdminMainPageEditor, beforeEnter: adminFilter },
     { path: '/admin/tags', component: AdminTagsPage, beforeEnter: adminFilter },
     { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }   
 ];
