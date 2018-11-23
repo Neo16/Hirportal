@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hirportal.Web.Controllers
 {
-    [Route("api")]
+    [Route("api/admin")]
     [ApiController]
     public class AdminTagsController : ControllerBase
     {
@@ -28,6 +28,30 @@ namespace Hirportal.Web.Controllers
         {
             IEnumerable<TagData> tags = await TagService.Get();
             return Ok(tags);
+        }
+
+        [HttpPost]
+        [Route("create-tag")]
+        public async Task<IActionResult> CreateTag([FromBody] TagData tag)
+        {
+            Guid createdTagId = await TagService.Create(tag);
+            return Ok(createdTagId);
+        }
+
+        [HttpDelete]
+        [Route("delete-tag")]
+        public async Task<IActionResult> DeleteTag(Guid tagId)
+        {
+            await TagService.Delete(tagId);
+            return Ok(tagId);
+        }
+
+        [HttpPut]
+        [Route("update-tag")]
+        public async Task<IActionResult> UpdateTag([FromBody] TagData tag)
+        {
+            await TagService.Update(tag);
+            return Ok(tag);
         }
     }    
 }
