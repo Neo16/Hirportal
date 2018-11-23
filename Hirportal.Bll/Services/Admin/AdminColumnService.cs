@@ -59,7 +59,7 @@ namespace Hirportal.Bll.Services
             }
             else
             {
-                //todo hibakezelés 
+                throw new BusinessLogicException("A keresett rovat nem található.") { ErrorCode = ErrorCode.InvalidArgument };
             }
         }
     }

@@ -11,11 +11,11 @@ namespace Hirportal.Web.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class TagsController : ControllerBase
+    public class AdminTagsController : ControllerBase
     {
-        public readonly IPublicTagService TagService;
+        public readonly IAdminTagService TagService;
 
-        public TagsController(IPublicTagService TagService)
+        public AdminTagsController(IAdminTagService TagService)
         {           
             this.TagService = TagService;
         }

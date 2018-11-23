@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hirportal.Bll.ServiceInterfaces
 {
-    public interface ITagService
+    public interface IAdminTagService
     {
         Task<IEnumerable<TagData>> Get();
 
