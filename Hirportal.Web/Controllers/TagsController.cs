@@ -13,9 +13,9 @@ namespace Hirportal.Web.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        public readonly ITagService TagService;
+        public readonly IPublicTagService TagService;
 
-        public TagsController(ITagService TagService)
+        public TagsController(IPublicTagService TagService)
         {           
             this.TagService = TagService;
         }

@@ -2,7 +2,7 @@
     <transition name="modal" v-if="visible">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container" v-bind:style="{width: width}">
+                <div class="modal-container" v-bind:style="{width: width}" v-clickout="hide">
 
                     <div class="modal-header text-info">
                         <slot name="header">
@@ -64,11 +64,28 @@
             },
             hide() {
                 this.visible = false;
-            }        
+            }
         },
         data: function () {
             return {
                 visible: false
+            }
+        },
+        directives: {
+            clickout: {
+                bind: function (el, binding, vnode) {
+                    el.clickOutsideEvent = function (event) {
+                        // here I check that click was outside the el and his childrens
+                        if (!(el == event.target || el.contains(event.target))) {
+                            // and if it did, call method provided in attribute value
+                            vnode.context[binding.expression](event);
+                        }
+                    };
+                    document.body.addEventListener('click', el.clickOutsideEvent)
+                },
+                unbind: function (el) {
+                    document.body.removeEventListener('click', el.clickOutsideEvent)
+                },
             }
         }
     }

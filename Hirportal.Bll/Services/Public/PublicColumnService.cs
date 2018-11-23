@@ -27,48 +27,13 @@ namespace Hirportal.Bll.Services
             await context.SaveChangesAsync();
             return columnObj.Id;
         }
-
-        public async Task Delete(Guid id)
-        {
-
-            bool columnsHasArticles = await context.Articles
-                .AnyAsync(e => e.ColumnId == id);
-            if (columnsHasArticles)
-            {
-                throw new BusinessLogicException("A rovat nem törölhető, mert cikkek tartoznak hozzá.") { ErrorCode = ErrorCode.InvalidArgument };
-            }
-
-            var columnEntity = await context.Columns
-              .FirstOrDefaultAsync(e => e.Id == id);
-
-            if (columnEntity != null)
-            {
-                context.Columns.Remove(columnEntity);
-                await context.SaveChangesAsync();
-            }
-        }
+        
 
         public async Task<IEnumerable<ColumnData>> Get()
         {
             return await context.Columns
                 .ProjectTo<ColumnData>()
                 .ToListAsync();
-        }
-
-        public async Task Update(ColumnData column)
-        {
-            var columnEntity = await context.Columns
-              .FirstOrDefaultAsync(e => e.Id == column.Id);
-
-            if (columnEntity != null)
-            {            
-                columnEntity.Name = column.Name;
-                await context.SaveChangesAsync();
-            }
-            else
-            {
-                //todo hibakezelés 
-            }
-        }
+        }       
     }
 }

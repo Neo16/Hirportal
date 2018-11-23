@@ -10,20 +10,10 @@ using System.Threading.Tasks;
 
 namespace Hirportal.Bll.Services
 {
-    public class TagService: ServiceBase, ITagService
+    public class PublicTagService: ServiceBase, IPublicTagService
     {
-        public TagService(ApplicationDbContext context) : base(context)
+        public PublicTagService(ApplicationDbContext context) : base(context)
         {
-        }
-
-        public Task Add(TagData tag)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<TagData>> Get()
@@ -31,11 +21,6 @@ namespace Hirportal.Bll.Services
             return await context.Tags
                .ProjectTo<TagData>()
                .ToListAsync();
-        }
-
-        public Task Update(TagData tag)
-        {
-            throw new NotImplementedException();
         }
     }
 }
