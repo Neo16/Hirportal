@@ -20,6 +20,7 @@
     <None Remove="Scripts\Components\Pages\AdminArticlesPage.js" />
     <None Remove="Scripts\Components\Pages\AdminColumnsPage.js" />
     <None Remove="Scripts\Components\Pages\AdminEditArticlePage.js" />
+    <None Remove="Scripts\Components\Pages\AdminTagsPage.js" />
     <None Remove="Scripts\Components\Pages\AdminMainPageEditor.js" />
     <None Remove="Scripts\Components\Pages\ArticleDetails.js" />
     <None Remove="Scripts\Components\Pages\ColumnPage.js" />

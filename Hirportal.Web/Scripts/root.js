@@ -10,6 +10,7 @@ import { store } from './store.js';
 import Datetime from 'vue-datetime';
 import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
+import AdminTagsPage from './Components/Pages/AdminTagsPage.js';
 import AdminEditArticlePage from './Components/Pages/AdminEditArticlePage.js';
 import AdminMainPageEditor from './Components/Pages/AdminMainPageEditor.js';
 import SearchPage from './Components/Pages/SearchPage.js';
@@ -31,7 +32,9 @@ const routes = [
     { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
     { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter },
     { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter },
-    { path: '/admin/edit-mainpage', component: AdminMainPageEditor, beforeEnter: adminFilter }
+    { path: '/admin/edit-mainpage', component: AdminMainPageEditor, beforeEnter: adminFilter },
+    { path: '/admin/tags', component: AdminTagsPage, beforeEnter: adminFilter },
+    { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }   
 ];
 
 function adminFilter(to, from, next) {
