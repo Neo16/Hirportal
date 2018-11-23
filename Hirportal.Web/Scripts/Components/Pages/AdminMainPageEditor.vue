@@ -80,7 +80,20 @@
                 this.newBlockName = "";
             },
             saveChanges() {
-
+                axios({
+                    method: 'post',
+                    url: config.apiRoot + '/admin/update-mainpage',
+                    data: {                       
+                       blocks: this.blocks                      
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${store.state.loginInfo.userToken}`
+                    }
+                }).then(res => {
+                    this.$router.push('/');
+                }).catch(err => {
+                    console.log(err.response);
+                });
             },
             removeBlock(id) {
                 let index = this.blocks.findIndex(x => x.id == id);

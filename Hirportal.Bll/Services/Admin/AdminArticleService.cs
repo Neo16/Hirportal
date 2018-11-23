@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Dal;
 using Hirportal.Model;
+using Hirportal.Model.MainPage;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -88,6 +90,31 @@ namespace Hirportal.Bll.Services
             {
                 //todo hibakezelés 
             }
+        }
+
+        public async Task UpdateMainPage(MainPageData data)
+        {
+            var newBlocks = data.Blocks
+                .Select(block => new MainPageBlock()
+                {
+                    IsLeadBlock = block.IsLeadBlock,
+                    Name = block.Name,
+                    MainPageCells = block.Cells.Select(c => new MainPageCell()
+                    {
+                        ArticleId = c.Article.Id,
+                        CellSize = c.CellSize,
+                        DisplayId = c.DisplayIndex                            
+                    })
+                    .ToList()
+                })
+                .ToList();
+
+            var oldBlocks = await context.MainPageBlocks.ToListAsync();
+            context.MainPageBlocks.RemoveRange(oldBlocks);
+            await context.SaveChangesAsync();
+
+            context.MainPageBlocks.AddRange(newBlocks);
+            await context.SaveChangesAsync();
         }
     }
 }

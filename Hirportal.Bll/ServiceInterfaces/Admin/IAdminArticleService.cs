@@ -1,4 +1,5 @@
 ﻿using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,5 +21,6 @@ namespace Hirportal.Bll.ServiceInterfaces
 
         Task<IEnumerable<ArticleHeaderData>> GetAll();
 
+        Task UpdateMainPage(MainPageData data);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hirportal.Bll.Dtos;
+using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.WebServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -81,6 +82,22 @@ namespace Hirportal.Web.Controllers
         {
             IEnumerable<ArticleHeaderData> articles = await adminArticleService.GetAll();           
             return Ok(articles);
+        }
+
+        [HttpPost("update-mainpage")]
+        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        public async Task<ActionResult> UpdateMainPage(MainPageData data)
+        {
+            if (data != null && data.Blocks!= null)
+            {
+                await adminArticleService.UpdateMainPage(data);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+           
         }
     }
 }
