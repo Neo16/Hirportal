@@ -12,6 +12,7 @@ import AdminArticlesPage from './Components/Pages/AdminArticlesPage.js';
 import AdminColumnsPage from './Components/Pages/AdminColumnsPage.js';
 import AdminTagsPage from './Components/Pages/AdminTagsPage.js';
 import AdminEditArticlePage from './Components/Pages/AdminEditArticlePage.js';
+import AdminMainPageEditor from './Components/Pages/AdminMainPageEditor.js';
 import SearchPage from './Components/Pages/SearchPage.js';
 import { ClientTable } from 'vue-tables-2';
 import VueMoment from 'vue-moment';
@@ -30,6 +31,8 @@ const routes = [
     { path: '/admin/create-article', component: CreateArticlePage, beforeEnter: adminFilter },
     { path: '/admin/articles', component: AdminArticlesPage, beforeEnter: adminFilter },
     { path: '/admin/columns', component: AdminColumnsPage, beforeEnter: adminFilter },
+    { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter },
+    { path: '/admin/edit-mainpage', component: AdminMainPageEditor, beforeEnter: adminFilter }
     { path: '/admin/tags', component: AdminTagsPage, beforeEnter: adminFilter },
     { path: '/admin/edit-article/:articleId', component: AdminEditArticlePage, beforeEnter: adminFilter }   
 ];
@@ -48,7 +51,7 @@ const router = new VueRouter({
     mode: 'history',
     routes, // short for `routes: routes`
     scrollBehavior(to, from, savedPosition) {
-        return { x: 0, y: 0 }
+        return { x: 0, y: 0 };
     }
 });
 

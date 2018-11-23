@@ -21,6 +21,7 @@
                         <b-dropdown-item :to="{path: '/admin/articles'}">Cikkek</b-dropdown-item>
                         <b-dropdown-item v-bind:to="{path: '/admin/create-article'}">Új cikk</b-dropdown-item>
                         <b-dropdown-item v-bind:to="{path: '/admin/columns'}">Rovatok</b-dropdown-item>
+                        <b-dropdown-item v-bind:to="{path: '/admin/edit-mainpage'}">Főoldal</b-dropdown-item>
                         <b-dropdown-item v-bind:to="{path: '/admin/tags'}">Címkék</b-dropdown-item>
                     </b-nav-item-dropdown>
                     <div v-if="loginInfo.userName" class="d-flex">
