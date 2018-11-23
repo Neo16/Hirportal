@@ -45,6 +45,13 @@ namespace Hirportal.Bll.Services
               .ToListAsync();
         }
 
+        public async Task<IEnumerable<ArticleHeaderData>> GetAll()
+        {
+            return await context.Articles
+              .ProjectTo<ArticleHeaderData>()
+              .ToListAsync();
+        }
+
         public async Task<ArticleEditCreateData> GetByIdAsync(Guid id)
         {
             return await context.Articles

@@ -11,5 +11,7 @@ namespace Hirportal.Bll.Dtos.MainPage
         public List<MainPageCellData> Cells { get; set; }
 
         public bool IsLeadBlock { get; set; }
+
+        public Guid Id { get; set; }
     }
 }

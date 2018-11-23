@@ -18,5 +18,7 @@ namespace Hirportal.Bll.ServiceInterfaces
 
         Task<ArticleEditCreateData> GetByIdAsync(Guid id);
 
+        Task<IEnumerable<ArticleHeaderData>> GetAll();
+
     }
 }

@@ -16,7 +16,7 @@ import SearchPage from './Components/Pages/SearchPage.js';
 import { ClientTable } from 'vue-tables-2';
 import VueMoment from 'vue-moment';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faPencilAlt, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faPencilAlt, faTrash, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //Define routes
@@ -54,7 +54,7 @@ const router = new VueRouter({
 
 
 //Add font awesome icons 
-library.add([faCoffee, faPencilAlt, faTrash, faSearch]);
+library.add([faCoffee, faPencilAlt, faTrash, faSearch, faTimes]);
 
 //global components 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

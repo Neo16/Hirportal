@@ -8,6 +8,5 @@ namespace Hirportal.Bll.Dtos.MainPage
     {
         public List<MainPageBlockData> Blocks { get; set; }
 
-        public MainPageBlockData LeadBlock { get; set; }
     }
 }

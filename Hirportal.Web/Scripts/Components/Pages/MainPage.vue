@@ -1,14 +1,8 @@
 ﻿<template>
-    <div>
-        <!-- Lead block -->
-        <div class="mt-2">
-            <articlesblock v-if="leadBlock"
-                           v-bind:block="leadBlock"
-                           v-bind:key="leadBlock.id">
-            </articlesblock>
-        </div>
-        <!-- Sub blocks -->
-        <articlesblock v-for="(subBlock, index) in subBlocks"
+    <div>   
+        <!--blocks -->
+        <articlesblock class="mt-2"
+                       v-for="(subBlock, index) in blocks"
                        v-bind:block="subBlock"
                        v-bind:key="subBlock.id">
         </articlesblock>
@@ -28,16 +22,14 @@
         },
         data: function () {
             return {
-                subBlocks: [],
-                leadBlock: null
+                blocks: [],                
             }
         },
         mounted() {                        
             axios
                 .get(config.apiRoot + '/mainpage')
                 .then(response => {
-                    this.subBlocks = response.data.blocks;
-                    this.leadBlock = response.data.leadBlock;
+                    this.blocks = response.data.blocks;                 
                 });
         }
     }

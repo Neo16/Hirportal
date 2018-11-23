@@ -63,6 +63,7 @@ namespace Hirportal.Bll
           
 
             CreateMap<MainPageBlock, MainPageBlockData>()
+                .ForMember(e => e.Id, f => f.MapFrom(k => k.Id))
                 .ForMember(e => e.Name, f => f.MapFrom(k => k.Name))
                 .ForMember(e => e.IsLeadBlock, f => f.MapFrom(k => k.IsLeadBlock))
                 .ForMember(e => e.Cells, f => f.MapFrom(k => k.MainPageCells));

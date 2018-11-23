@@ -74,5 +74,13 @@ namespace Hirportal.Web.Controllers
             }
             return Ok(article);
         }
+
+        [HttpGet("all-articles")]
+        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        public async Task<ActionResult> GetAll()
+        {
+            IEnumerable<ArticleHeaderData> articles = await adminArticleService.GetAll();           
+            return Ok(articles);
+        }
     }
 }

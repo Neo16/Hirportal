@@ -226,3 +226,29 @@ th:nth-child(3) {
 .tags-label {
   font-style: italic;
   font-size: 16px; }
+
+.edit-articles-block {
+  background: #f8f9fa;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; }
+  .edit-articles-block .block-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: #CDBF7C; }
+  .edit-articles-block .edit-article-cell {
+    border-bottom: 1px solid #cdc6c6;
+    margin-bottom: 10px;
+    padding-bottom: 7px; }
+    .edit-articles-block .edit-article-cell .cell-row-right {
+      display: flex;
+      width: 175px;
+      align-items: center;
+      justify-content: space-between; }
+  .edit-articles-block .width-select {
+    width: 150px;
+    height: 35px; }

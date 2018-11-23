@@ -73,18 +73,8 @@ namespace Hirportal.Bll.Services
 
             var blocks = await context.MainPageBlocks      
                 .ProjectTo<MainPageBlockData>()                
-                .ToListAsync();            
-
-            var subBlocks = blocks
-                .Where(e => e.IsLeadBlock == false)            
-                .ToList();
-            
-            var leadBlock  = blocks
-               .Where(e => e.IsLeadBlock == true)             
-               .FirstOrDefault();
-            
-            mainPageData.Blocks = subBlocks;
-            mainPageData.LeadBlock = leadBlock;
+                .ToListAsync();
+            mainPageData.Blocks = blocks;
 
             return mainPageData;
         }
