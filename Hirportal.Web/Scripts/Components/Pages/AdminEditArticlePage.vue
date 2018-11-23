@@ -48,6 +48,7 @@
                     this.article.PublishDate = response.data.publishDate;
                     this.article.ArchiveDate = response.data.archiveDate;
                     this.article.Column.Id = response.data.column.id;
+                    this.article.Column.Name = response.data.column.name;
                     this.article.Tags = response.data.tags;
                     this.article.ThumbnailContent = response.data.thumbnailContent;
                 })
