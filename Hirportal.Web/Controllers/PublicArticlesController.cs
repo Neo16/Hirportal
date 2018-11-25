@@ -31,19 +31,15 @@ namespace Hirportal.Web.Controllers
                 return NotFound();
             }
             return Ok(article);
-        }
-
-        //Todo: Configba visszaadott cikkek száma. 
-        //Todo: lapozás? 
+        }     
+    
         [HttpPost("articles/search")]
         public async Task<ActionResult> Search([FromBody] ArticleFilterData filter)
         {
             ArticleSearchResultDto searchResult = await publicArticleService.FindAsync(filter);
             return Ok(searchResult);
         }
-
-        //Todo: Configba visszaadott cikkek száma. 
-        //Todo: lapozás? 
+  
         /// <summary>
         ///Egy rovat cikkeit adja vissz
         /// </summary>   

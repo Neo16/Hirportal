@@ -56,6 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\Hirportal.Bll\Hirportal.Bll.csproj" />
     <ProjectReference Include="..\Hirportal.Dal\Hirportal.Dal.csproj" />
     <ProjectReference Include="..\Hirportal.Model\Hirportal.Model.csproj" />

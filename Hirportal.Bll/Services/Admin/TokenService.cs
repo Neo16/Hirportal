@@ -9,29 +9,31 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
+using Hirportal.Common.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Hirportal.Bll.Services
 {
     public class TokenService : ServiceBase, ITokenService
     {
-        private readonly JwtSecurityTokenHandler _accessTokenHandler;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        //Todo kitenni configba
-        private const string tokenKey = "asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd";
+        private readonly JwtSecurityTokenHandler accessTokenHandler;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly TokenConfiguration tokenConfiguration;       
 
         public TokenService(
             ApplicationDbContext context,
             SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager) : base(context)
+            UserManager<ApplicationUser> userManager,
+            IOptions<TokenConfiguration> tokenConfiguration) : base(context)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
-            _accessTokenHandler = new JwtSecurityTokenHandler
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.accessTokenHandler = new JwtSecurityTokenHandler
             {
                 TokenLifetimeInMinutes = (int)(TimeSpan.FromDays(1)).TotalMinutes
             };
+            this.tokenConfiguration = tokenConfiguration.Value;
         }
 
         public async Task<LoginResultDto> GetTokenForUserAsync(ApplicationUser user)
@@ -39,14 +41,14 @@ namespace Hirportal.Bll.Services
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Issuer = "https://localhost:44381/",
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)), SecurityAlgorithms.HmacSha256),
-                Subject = new ClaimsIdentity((await _signInManager.CreateUserPrincipalAsync(user)).Claims),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.SigningKey)), SecurityAlgorithms.HmacSha256),
+                Subject = new ClaimsIdentity((await signInManager.CreateUserPrincipalAsync(user)).Claims),
             };
 
-            var tokenHandler = _accessTokenHandler.CreateJwtSecurityToken(tokenDescriptor);
-            var accessToken = _accessTokenHandler.WriteToken(tokenHandler);
+            var tokenHandler = accessTokenHandler.CreateJwtSecurityToken(tokenDescriptor);
+            var accessToken = accessTokenHandler.WriteToken(tokenHandler);
 
-            var res = await _userManager.SetAuthenticationTokenAsync(user, "Local", "Access", accessToken);
+            var res = await userManager.SetAuthenticationTokenAsync(user, "Local", "Access", accessToken);
 
             if (res.Succeeded)
             {

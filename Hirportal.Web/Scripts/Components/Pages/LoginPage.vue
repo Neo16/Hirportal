@@ -42,8 +42,7 @@
                         this.$router.push('/');
                     })
                     .catch(function (error) {
-                        console.log(error.response);
-                        //todo
+                        console.log(error.response);                        
                     });
             }
         }

@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Hirportal.Web.WebServices;
 using Hirportal.Web;
+using Hirportal.Common.Configuration;
 
 namespace Hirportal
 {
@@ -25,13 +26,22 @@ namespace Hirportal
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConfigurationSectionToken = configuration.GetSection("Token");
+            ConfigurationSectionUserPages = configuration.GetSection("UserPages");
         }
 
         public IConfiguration Configuration { get; }
 
+        private IConfigurationSection ConfigurationSectionToken { get; }
+
+        private IConfigurationSection ConfigurationSectionUserPages { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<TokenConfiguration>(ConfigurationSectionToken);
+
+            services.Configure<UserPagesConfiguration>(ConfigurationSectionUserPages);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -55,8 +65,9 @@ namespace Hirportal
                  options.SaveToken = true;
                  options.TokenValidationParameters = new TokenValidationParameters
                  {
-                     //Todo kitenni configba
-                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd_asd")),
+                     IssuerSigningKey = new SymmetricSecurityKey(
+                         Encoding.UTF8.GetBytes(ConfigurationSectionToken.Get<TokenConfiguration>().SigningKey)
+                     ),
                      ValidateAudience = false,
                      ValidIssuer = "https://localhost:44381/"
                  };
@@ -67,7 +78,7 @@ namespace Hirportal
             var serviceTypes = assembly.ExportedTypes
                .Where(e => e.IsClass && e.IsPublic && !e.IsAbstract)
                .Where(e => e.IsSubclassOf(typeof(ServiceBase)))
-               .ToList();         
+               .ToList();
 
             foreach (var serviceType in serviceTypes)
             {
@@ -85,7 +96,7 @@ namespace Hirportal
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();          
+                app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else

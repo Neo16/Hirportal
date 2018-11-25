@@ -3,8 +3,10 @@ using AutoMapper.QueryableExtensions;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.Dtos.MainPage;
 using Hirportal.Bll.ServiceInterfaces;
+using Hirportal.Common.Configuration;
 using Hirportal.Dal;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,14 @@ namespace Hirportal.Bll.Services
 {
     public class PublicArticleService : ServiceBase, IPublicArticleService
     {
-        public PublicArticleService(ApplicationDbContext context) : base(context)
+
+        private readonly UserPagesConfiguration userPagesConfiguration;
+
+        public PublicArticleService(
+           ApplicationDbContext context,
+           IOptions<UserPagesConfiguration> userPagesConfiguration) : base(context)
         {
+            this.userPagesConfiguration = userPagesConfiguration.Value;
         }
        
         public async Task<ArticleSearchResultDto> FindAsync(ArticleFilterData filter)
@@ -49,11 +57,12 @@ namespace Hirportal.Bll.Services
 
         public async Task<IEnumerable<ArticleHeaderData>> GetByColumn(string column)
         {
-            var now = DateTime.Now;
-            //todo csak configban megadott darabot visszaadni 
+            var now = DateTime.Now;           
             return await context.Articles
                 .Where(e => e.Column.Name.ToLower() == column.ToLower())
                 .Where(e => e.PublishDate <= now && e.ArchiveDate >= now)
+                .OrderBy(e => e.PublishDate)
+                .Take(userPagesConfiguration.NumberOfArticlesOnColumnPage)
                 .ProjectTo<ArticleHeaderData>()
                 .ToListAsync();
         }

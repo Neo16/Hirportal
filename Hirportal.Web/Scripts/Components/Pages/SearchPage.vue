@@ -14,7 +14,6 @@
                          v-bind:cellSize="1">
             </articlecell>
         </div> 
-        <!--todo, kivenni a per-page-et a store-ból-->
         <b-pagination v-if="hasItems(searchState.resultArticles)"
                       align="center" size="lg" class="mt-4"
                       :total-rows="searchState.totalResultNum" 

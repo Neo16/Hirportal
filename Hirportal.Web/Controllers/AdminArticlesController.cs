@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.Dtos.MainPage;
+using Hirportal.Bll.Exceptions;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Web.WebServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,11 +39,15 @@ namespace Hirportal.Web.Controllers
         [HttpPost]
         [Route("create-article")]                
         public async Task<IActionResult> CreateArticle([FromBody] ArticleEditCreateData article)
-        {
-            //Todo validation 
-            article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
-            await adminArticleService.Create(article);
-            return Ok();
+        {            
+            if (article != null && ModelState.IsValid)
+            {
+                article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
+                await adminArticleService.Create(article);
+                return Ok();
+            }
+            throw new BusinessLogicException("Validációs hiba") { ErrorCode = ErrorCode.InvalidArgument };               
+        
         }
 
         [HttpPost]
@@ -50,10 +55,14 @@ namespace Hirportal.Web.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> UpdateArticle(Guid articleId, [FromBody] ArticleEditCreateData article)
         {
-            //Todo validation 
-            article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
-            await adminArticleService.Update(articleId,article);
-            return Ok();
+            if (article != null && ModelState.IsValid)
+            {
+                article.AuthorId = (await currentUserService.GetCurrentUser()).Id;
+                await adminArticleService.Update(articleId, article);
+                return Ok();
+            }
+
+            throw new BusinessLogicException("Validációs hiba") { ErrorCode = ErrorCode.InvalidArgument };
         }
 
         [HttpDelete]
@@ -64,8 +73,7 @@ namespace Hirportal.Web.Controllers
             return Ok(articleId);
         }
 
-        [HttpGet("articles/{id}")]
-        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        [HttpGet("articles/{id}")]      
         public async Task<ActionResult> Get(Guid id)
         {
             ArticleEditCreateData article = await adminArticleService.GetByIdAsync(id);
@@ -76,16 +84,14 @@ namespace Hirportal.Web.Controllers
             return Ok(article);
         }
 
-        [HttpGet("all-articles")]
-        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        [HttpGet("all-articles")]       
         public async Task<ActionResult> GetAll()
         {
             IEnumerable<ArticleHeaderData> articles = await adminArticleService.GetAll();           
             return Ok(articles);
         }
 
-        [HttpPost("update-mainpage")]
-        /// <returns>ArcticleDisplayData-t ad vissza</returns>
+        [HttpPost("update-mainpage")]      
         public async Task<ActionResult> UpdateMainPage(MainPageData data)
         {
             if (data != null && data.Blocks!= null)

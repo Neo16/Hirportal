@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Hirportal.Bll.Dtos;
 using Hirportal.Bll.Dtos.MainPage;
+using Hirportal.Bll.Exceptions;
 using Hirportal.Bll.ServiceInterfaces;
 using Hirportal.Dal;
 using Hirportal.Model;
@@ -88,7 +89,7 @@ namespace Hirportal.Bll.Services
             }
             else
             {
-                //todo hibakezelés 
+                throw new BusinessLogicException("Cikk nem létezik") { ErrorCode = ErrorCode.NotFound };
             }
         }
 
