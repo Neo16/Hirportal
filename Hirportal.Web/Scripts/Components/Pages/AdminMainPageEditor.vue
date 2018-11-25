@@ -29,6 +29,7 @@
 <script>
     import { config } from '../../config';
     import { store } from '../../store';
+    import { generateGuid } from '../../utils';
     import axios from 'axios';
     import EditArticlesBlock from '../Molecules/EditArticlesBlock';
     import BasicModal from '../Molecules/BasicModal';
@@ -70,12 +71,13 @@
             });
         },
         methods: {
+           
             addBlock() {
                 this.blocks.push({
                     name: this.newBlockName,
                     cells: [],
                     isLeadBlock: false,
-                    id: (Math.floor(Math.random() * 100000000)).toString()
+                    id: generateGuid()
                 });
                 this.newBlockName = "";
             },

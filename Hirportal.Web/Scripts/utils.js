@@ -5,7 +5,7 @@
 
 export const dateCompare = function (property) {
     return function (ascending) {
-        return function (a, b) {           
+        return function (a, b) {
             console.log(a[property]);
             let dateA = new Date(a[property]);
             let dateB = new Date(b[property]);
@@ -18,4 +18,13 @@ export const dateCompare = function (property) {
     };
 };
 
-   
+function S4() {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+}
+
+export const generateGuid = function () {
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+};
+
+
