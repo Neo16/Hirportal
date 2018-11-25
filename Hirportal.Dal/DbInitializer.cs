@@ -55,7 +55,7 @@ namespace Hirportal.Dal
             var columns = new List<Column>()
             {
                 new Column() { Name ="Belföld"},
-                new Column() { Name ="Küldöld"},
+                new Column() { Name ="Külföld"},
                 new Column() { Name ="Sport"},
                 new Column() { Name ="Közélet"},
             };
